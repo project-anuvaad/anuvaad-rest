@@ -9,7 +9,7 @@ apiEndpoints:
     paths: '/ip'
 serviceEndpoints:
   httpbin:
-    url: 'https://httpbin.org'
+    url: 'http://localhost:3000'
 policies:
   - basic-auth
   - cors
@@ -25,7 +25,7 @@ pipelines:
       - api
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
-      - oauth2:
+      # - oauth2:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
