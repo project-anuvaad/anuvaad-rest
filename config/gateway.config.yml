@@ -7,6 +7,9 @@ apiEndpoints:
   api:
     host: '*'
     paths: '/translate-docx'
+  fetch-process:
+    host: '*'
+    paths: '/fetch-translation-process'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
@@ -24,6 +27,7 @@ pipelines:
   default:
     apiEndpoints:
       - api
+      - fetch-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
