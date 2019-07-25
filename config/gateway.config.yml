@@ -26,6 +26,7 @@ pipelines:
       - api
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
       - oauth2:
          - action:
             passThrough: true
