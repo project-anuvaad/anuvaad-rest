@@ -9,7 +9,7 @@ apiEndpoints:
     paths: '/translate-docx'
 serviceEndpoints:
   httpbin:
-    url: 'http://localhost:5001/'
+    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
 policies:
   - basic-auth
   - cors
