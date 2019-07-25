@@ -5,11 +5,11 @@ admin:
   host: localhost
 apiEndpoints:
   api:
-    host: localhost
-    paths: '/ip'
+    host: '*'
+    paths: '/translate-docx'
 serviceEndpoints:
   httpbin:
-    url: 'http://localhost:3000'
+    url: 'http://localhost:5001/'
 policies:
   - basic-auth
   - cors
@@ -19,14 +19,24 @@ policies:
   - oauth2
   - proxy
   - rate-limit
+  - headers
 pipelines:
   default:
     apiEndpoints:
       - api
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
-      # - oauth2:
+      - oauth2:
+         - action:
+            passThrough: true
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
       - proxy:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
+              
