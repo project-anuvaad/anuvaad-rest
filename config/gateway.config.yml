@@ -10,6 +10,12 @@ apiEndpoints:
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
+  fetch-sentences:
+    host: '*'
+    paths: '/fetch-sentences'
+  fetch-corpus:
+    host: '*'
+    paths: '/fetch-corpus'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
