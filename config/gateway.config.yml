@@ -28,6 +28,8 @@ pipelines:
     apiEndpoints:
       - api
       - fetch-process
+      - fetch-sentences
+      - fetch-corpus
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
