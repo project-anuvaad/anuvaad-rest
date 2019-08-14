@@ -51,6 +51,7 @@ pipelines:
       - update-sentences
       - update-sentences-status
       - update-sentences-grade
+      - get-profile
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
