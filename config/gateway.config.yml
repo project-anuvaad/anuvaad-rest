@@ -28,6 +28,12 @@ apiEndpoints:
   get-profile:
     host: '*'
     paths: '/get-profile'
+  upload-corpus:
+    host: '*'
+    paths: '/upload-corpus'
+  get-corpus:
+    host: '*'
+    paths: '/get-corpus'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
@@ -52,6 +58,8 @@ pipelines:
       - update-sentences-status
       - update-sentences-grade
       - get-profile
+      - upload-corpus
+      - get-corpus
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
