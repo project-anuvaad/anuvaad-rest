@@ -89,3 +89,4 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: httpbin
+              changeOrigin: true
