@@ -82,4 +82,8 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-              
+  pipeline1:
+    apiEndPoint:
+      - hello
+    policies:
+      - basic-auth:            
