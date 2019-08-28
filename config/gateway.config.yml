@@ -28,7 +28,7 @@ apiEndpoints:
   get-profile:
     host: '*'
     paths: '/get-profile'
-  hello:
+  test-api:
     host: '*'
     paths: '/hello'
   update-passsword:
@@ -56,9 +56,10 @@ policies:
 pipelines:
   default:
     apiEndPoints:
-      - hello
+      - test-api
     policies:
-      - basic-auth:
+      - cors:
+      - oauth2:
       - proxy:
           - action:
               serviceEndpoint: httpbin
