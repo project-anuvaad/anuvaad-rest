@@ -83,7 +83,10 @@ pipelines:
               serviceEndpoint: httpbin 
               changeOrigin: true
   pipeline1:
-    apiEndPoint:
+    apiEndPoints:
       - hello
     policies:
-      - basic-auth:            
+      - basic-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: httpbin
