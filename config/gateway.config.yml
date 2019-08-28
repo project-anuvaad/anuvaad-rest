@@ -58,12 +58,11 @@ policies:
 pipelines:
   default:
     apiEndpoints:
-      - api
       - test-api
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - oauth2:
+      - basic-auth:
       - headers:
          - action:
               headersPrefix: 'ad-'
