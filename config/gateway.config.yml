@@ -54,7 +54,7 @@ policies:
   - rate-limit
   - headers
 pipelines:
-  default:
+  pipeline1:
     apiEndpoints:
       - api
       - fetch-process
@@ -82,7 +82,7 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  pipeline1:
+  default:
     apiEndPoints:
       - hello
     policies:
