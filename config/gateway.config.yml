@@ -74,6 +74,7 @@ pipelines:
   pipeline1:
     apiEndpoints:
       - api
+      - test-api
       - fetch-process
       - fetch-sentences
       - fetch-corpus
