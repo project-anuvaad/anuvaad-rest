@@ -63,12 +63,6 @@ pipelines:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
       - basic-auth:
-      - headers:
-         - action:
-              headersPrefix: 'ad-'
-              forwardHeaders:
-                userid: 'consumer.token.authenticatedUserId'
-                requestID: 'requestID'
       - proxy:
           - action:
               serviceEndpoint: httpbin 
