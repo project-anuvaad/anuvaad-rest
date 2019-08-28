@@ -31,7 +31,7 @@ apiEndpoints:
   test-api:
     host: '*'
     paths: '/hello'
-  update-passsword:
+  update-password:
     host: '*'
     paths: '/update-password'
   upload-corpus:
