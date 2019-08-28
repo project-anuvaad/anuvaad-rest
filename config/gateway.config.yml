@@ -30,7 +30,7 @@ apiEndpoints:
     paths: '/get-profile'
   test-api:
     host: '*'
-    paths: '/test-api'
+    paths: '/hello'
   update-passsword:
     host: '*'
     paths: '/update-password'
