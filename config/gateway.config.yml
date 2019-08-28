@@ -54,6 +54,15 @@ policies:
   - rate-limit
   - headers
 pipelines:
+  default:
+    apiEndPoints:
+      - hello
+    policies:
+      - basic-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: httpbin
+              changeOrigin: true
   pipeline1:
     apiEndpoints:
       - api
@@ -81,12 +90,4 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  default:
-    apiEndPoints:
-      - hello
-    policies:
-      - basic-auth:
-      - proxy:
-          - action:
-              serviceEndpoint: httpbin
-              changeOrigin: true
+  
