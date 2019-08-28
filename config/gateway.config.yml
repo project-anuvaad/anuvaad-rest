@@ -64,7 +64,6 @@ pipelines:
       - update-sentences-status
       - update-sentences-grade
       - get-profile
-      - hello
       - update-password
       - upload-corpus
       - get-corpus
