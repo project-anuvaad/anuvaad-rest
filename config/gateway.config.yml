@@ -43,6 +43,8 @@ apiEndpoints:
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
+  test:
+    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
 policies:
   - basic-auth
   - cors
@@ -62,8 +64,7 @@ pipelines:
       - oauth2:
       - proxy:
           - action:
-              serviceEndpoint: httpbin
-              changeOrigin: true
+              serviceEndpoint: test
   pipeline1:
     apiEndpoints:
       - api
