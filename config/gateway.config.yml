@@ -28,7 +28,7 @@ apiEndpoints:
   get-profile:
     host: '*'
     paths: '/get-profile'
-  hello:
+  test-api:
     host: '*'
     paths: '/hello'
   update-passsword:
@@ -56,6 +56,17 @@ policies:
 pipelines:
   pipeline1:
     apiEndpoints:
+      - test-api
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - basic-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: httpbin 
+              changeOrigin: true
+  default:
+    apiEndpoints:
       - api
       - fetch-process
       - fetch-sentences
@@ -81,11 +92,4 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  default:
-    apiEndPoints:
-      - hello
-    policies:
-      - basic-auth:
-      - proxy:
-          - action:
-              serviceEndpoint: httpbin
+  
