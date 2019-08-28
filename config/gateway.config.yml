@@ -57,9 +57,11 @@ policies:
   - headers
 pipelines:
   default:
-    apiEndPoints:
+    apiEndpoints:
+      - api
       - test-api
     policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
       - oauth2:
       - headers:
@@ -70,11 +72,11 @@ pipelines:
                 requestID: 'requestID'
       - proxy:
           - action:
-              serviceEndpoint: test
+              serviceEndpoint: httpbin 
+              changeOrigin: true
   pipeline1:
     apiEndpoints:
       - api
-      - test-api
       - fetch-process
       - fetch-sentences
       - fetch-corpus
