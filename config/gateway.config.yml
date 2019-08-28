@@ -62,6 +62,12 @@ pipelines:
     policies:
       - cors:
       - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
       - proxy:
           - action:
               serviceEndpoint: test
