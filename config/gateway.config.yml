@@ -59,6 +59,7 @@ pipelines:
   default:
     apiEndPoints:
       - test-api
+      - api
     policies:
       - cors:
       - oauth2:
