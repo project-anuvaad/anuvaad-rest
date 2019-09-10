@@ -74,9 +74,6 @@ pipelines:
     apiEndpoints:
       - fetch-corpus-sentences
       - fetch-corpus
-      - update-sentences
-      - update-sentences-status
-      - update-sentences-grade
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -100,6 +97,9 @@ pipelines:
       - update-password
       - upload-corpus
       - get-corpus
+      - update-sentences
+      - update-sentences-status
+      - update-sentences-grade
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
