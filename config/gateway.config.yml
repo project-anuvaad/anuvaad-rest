@@ -13,6 +13,9 @@ apiEndpoints:
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  fetch-corpus-sentences:
+    host: '*'
+    paths: '/fetch-corpus-sentences'
   fetch-corpus:
     host: '*'
     paths: '/fetch-corpus'
@@ -43,6 +46,8 @@ apiEndpoints:
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
+  corpusproxy:
+    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'
 policies:
   - basic-auth
   - cors
@@ -65,15 +70,32 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
+  corpus:
+    apiEndpoints:
+      - fetch-corpus-sentences
+      - fetch-corpus
+      - update-sentences
+      - update-sentences-status
+      - update-sentences-grade
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxy 
+              changeOrigin: true
   default:
     apiEndpoints:
       - api
       - fetch-process
       - fetch-sentences
-      - fetch-corpus
-      - update-sentences
-      - update-sentences-status
-      - update-sentences-grade
       - get-profile
       - update-password
       - upload-corpus
