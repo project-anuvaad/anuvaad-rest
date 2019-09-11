@@ -43,6 +43,9 @@ apiEndpoints:
   get-corpus:
     host: '*'
     paths: '/get-corpus'
+  translate-source:
+    host: '*'
+    paths: '/translate-source'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
@@ -74,6 +77,7 @@ pipelines:
     apiEndpoints:
       - fetch-corpus-sentences
       - fetch-corpus
+      - translate-source
       - update-sentences
       - update-sentences-status
       - update-sentences-grade
