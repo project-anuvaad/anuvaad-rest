@@ -1,7 +1,7 @@
 # Core
 db:
   redis:
-    host: localhost
+    host: 172.30.0.103
     port: 6379
     namespace: AG
 
@@ -18,7 +18,7 @@ crypto:
 session:
   storeProvider: connect-redis
   storeOptions:
-    host: localhost
+    host: 172.30.0.103
     port: 6379
   secret: keyboard cat
   resave: false
