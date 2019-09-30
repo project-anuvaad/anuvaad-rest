@@ -48,7 +48,7 @@ apiEndpoints:
     paths: '/translate-source'
 serviceEndpoints:
   httpbin:
-    url: 'http://documents.anuvaad.org/corpus/'
+    url: 'http://gateway_python:5001/'
   corpusproxy:
     url: 'http://documents.anuvaad.org/auto/anuvaad/v1/'
 policies:
