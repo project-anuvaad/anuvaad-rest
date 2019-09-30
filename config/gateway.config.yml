@@ -48,9 +48,9 @@ apiEndpoints:
     paths: '/translate-source'
 serviceEndpoints:
   httpbin:
-    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
+    url: 'http://documents.anuvaad.org/corpus/'
   corpusproxy:
-    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'
+    url: 'http://documents.anuvaad.org/auto/anuvaad/v1/'
 policies:
   - basic-auth
   - cors
