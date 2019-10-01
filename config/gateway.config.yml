@@ -1,8 +1,9 @@
 http:
-  port: 8080
+  port: ${PORT:-8080}
+  hostname: 0.0.0.0
 admin:
-  port: 9876
-  host: localhost
+  port: ${ADMIN_PORT:-9876}
+  hostname: 0.0.0.0
 apiEndpoints:
   api:
     host: '*'
@@ -48,9 +49,9 @@ apiEndpoints:
     paths: '/translate-source'
 serviceEndpoints:
   httpbin:
-    url: 'http://gateway_python:5001/'
+    url: ${PYTHON_URL:-'http://gateway_python:5001/'}
   corpusproxy:
-    url: 'http://documents.anuvaad.org/auto/anuvaad/v1/'
+    url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
 policies:
   - basic-auth
   - cors
