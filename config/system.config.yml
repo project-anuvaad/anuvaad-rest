@@ -18,8 +18,8 @@ crypto:
 session:
   storeProvider: connect-redis
   storeOptions:
-    host: localhost
-    port: 6379
+    host: ${REDIS_URL:-localhost}
+    port: ${REDIS_PORT:-6379}
   secret: keyboard cat
   resave: false
   saveUninitialized: false
