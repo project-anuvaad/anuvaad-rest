@@ -8,6 +8,9 @@ apiEndpoints:
   api:
     host: '*'
     paths: '/translate-docx'
+  translate-docx:
+    host: '*'
+    paths: '/v2/translate-docx'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
@@ -99,6 +102,7 @@ pipelines:
   default:
     apiEndpoints:
       - api
+      - translate-docx
       - fetch-process
       - fetch-sentences
       - get-profile
