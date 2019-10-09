@@ -109,6 +109,7 @@ pipelines:
   translation:
     apiEndpoints:
       - translation_en
+      - translation_hi
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
