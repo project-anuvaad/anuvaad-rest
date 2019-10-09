@@ -19,6 +19,9 @@ apiEndpoints:
   translation_en:
     host: '*'
     paths: '/translation_en'
+  translation_hi:
+    host: '*'
+    paths: '/translation_hi'
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
