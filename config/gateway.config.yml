@@ -125,6 +125,11 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 5                       # max 5 request
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
           - action:
               serviceEndpoint: translation 
@@ -144,8 +149,8 @@ pipelines:
                 requestID: 'requestID'
       - rate-limit:
         - action:                         # allow
-            max: 1                       # max 1 request
-            windowMs: 100000              # per 100 seconds
+            max: 5                       # max 5 request
+            windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
           - action:
