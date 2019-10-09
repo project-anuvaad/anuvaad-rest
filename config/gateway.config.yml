@@ -16,6 +16,9 @@ apiEndpoints:
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  translation_en:
+    host: '*'
+    paths: '/translation_en'
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
@@ -54,6 +57,8 @@ serviceEndpoints:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
   corpusproxy:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'
+  translation:
+    url: 'http://52.40.71.62:3003/translator/'
 policies:
   - basic-auth
   - cors
@@ -97,6 +102,23 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
+              changeOrigin: true
+  translation:
+    apiEndpoints:
+      - translation_en
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: translation 
               changeOrigin: true
   default:
     apiEndpoints:
