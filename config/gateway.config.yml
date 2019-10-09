@@ -49,6 +49,9 @@ apiEndpoints:
   upload-corpus:
     host: '*'
     paths: '/upload-corpus'
+  translate:
+    host: '*'
+    paths: '/translate'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
@@ -58,6 +61,8 @@ apiEndpoints:
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
+  auto:
+    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/'
   corpusproxy:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'
   translation:
@@ -123,6 +128,23 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: translation 
+              changeOrigin: true
+  auto:
+    apiEndpoints:
+      - translate
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: auto 
               changeOrigin: true
   default:
     apiEndpoints:
