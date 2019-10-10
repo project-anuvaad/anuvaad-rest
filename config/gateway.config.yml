@@ -104,6 +104,7 @@ pipelines:
       - update-sentences-status
       - update-sentences-grade
       - fetch-benchmarks
+      - fetch-benchmark-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
