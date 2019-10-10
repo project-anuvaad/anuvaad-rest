@@ -55,6 +55,9 @@ apiEndpoints:
   fetch-benchmarks:
     host: '*'
     paths: '/fetch-benchmarks'
+  fetch-benchmark-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-sentences'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
