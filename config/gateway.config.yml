@@ -52,6 +52,9 @@ apiEndpoints:
   translate:
     host: '*'
     paths: '/translate'
+  fetch-benchmarks:
+    host: '*'
+    paths: '/fetch-benchmarks'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
@@ -97,6 +100,7 @@ pipelines:
       - update-sentences
       - update-sentences-status
       - update-sentences-grade
+      - fetch-benchmarks
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
