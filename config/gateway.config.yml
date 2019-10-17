@@ -68,6 +68,8 @@ apiEndpoints:
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
+  auto:
+    url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
   corpusproxy:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
