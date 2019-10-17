@@ -17,6 +17,12 @@ apiEndpoints:
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  translation_en:
+    host: '*'
+    paths: '/translation_en'
+  translation_hi:
+    host: '*'
+    paths: '/translation_hi'
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
@@ -44,6 +50,15 @@ apiEndpoints:
   upload-corpus:
     host: '*'
     paths: '/upload-corpus'
+  translate:
+    host: '*'
+    paths: '/translate'
+  fetch-benchmarks:
+    host: '*'
+    paths: '/fetch-benchmarks'
+  fetch-benchmark-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-sentences'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
@@ -55,6 +70,8 @@ serviceEndpoints:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
   corpusproxy:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
+  translation:
+    url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
 policies:
   - basic-auth
   - cors
@@ -85,6 +102,8 @@ pipelines:
       - update-sentences
       - update-sentences-status
       - update-sentences-grade
+      - fetch-benchmarks
+      - fetch-benchmark-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -98,6 +117,51 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
+              changeOrigin: true
+  translation:
+    apiEndpoints:
+      - translation_en
+      - translation_hi
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 5                       # max 5 request
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
+      - proxy:
+          - action:
+              serviceEndpoint: translation 
+              changeOrigin: true
+  auto:
+    apiEndpoints:
+      - translate
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 5                       # max 5 request
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
+      - proxy:
+          - action:
+              serviceEndpoint: auto 
               changeOrigin: true
   default:
     apiEndpoints:
