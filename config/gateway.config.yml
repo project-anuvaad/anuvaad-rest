@@ -116,6 +116,7 @@ pipelines:
       - fetch-benchmark-sentences
       - list-users
       - list-roles
+      - create-user
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -185,7 +186,6 @@ pipelines:
       - update-password
       - upload-corpus
       - get-corpus
-      - create-user
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
