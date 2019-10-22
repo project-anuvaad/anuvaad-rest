@@ -73,6 +73,9 @@ apiEndpoints:
   create-user:
     host: '*'
     paths: '/create-user'
+  update-user-status:
+    host: '*'
+    paths: '/update-user-status'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
@@ -117,6 +120,7 @@ pipelines:
       - list-users
       - list-roles
       - create-user
+      - update-user-status
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
