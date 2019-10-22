@@ -76,6 +76,9 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
+  update-password-admin:
+    host: '*'
+    paths: '/update-password-admin'
 serviceEndpoints:
   httpbin:
     url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
@@ -190,6 +193,7 @@ pipelines:
       - update-password
       - upload-corpus
       - get-corpus
+      - update-password-admin
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
