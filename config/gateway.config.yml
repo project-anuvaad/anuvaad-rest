@@ -58,6 +58,9 @@ apiEndpoints:
   fetch-benchmark-sentences:
     host: '*'
     paths: '/fetch-benchmark-sentences'
+  fetch-benchmark-reports:
+    host: '*'
+    paths: '/fetch-benchmark-reports'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
@@ -124,6 +127,7 @@ pipelines:
       - list-roles
       - create-user
       - update-user-status
+      - fetch-benchmark-reports
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
