@@ -70,23 +70,15 @@ apiEndpoints:
   list-users:
     host: '*'
     paths: '/list-users'
-    scopes:
-      - 'admin'
   list-roles:
     host: '*'
     paths: '/list-roles'
-    scopes:
-      - 'admin'
   create-user:
     host: '*'
     paths: '/create-user'
-    scopes:
-      - 'admin'
   update-user-status:
     host: '*'
     paths: '/update-user-status'
-    scopes:
-      - 'admin'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
@@ -122,6 +114,27 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
+              changeOrigin: true
+  admin:
+    apiEndpoints:
+      - list-users
+      - list-roles
+      - create-user
+      - update-user-status
+      - fetch-benchmark-reports
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - key-auth:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxy 
               changeOrigin: true
   corpus:
     apiEndpoints:
