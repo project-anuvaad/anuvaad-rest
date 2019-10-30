@@ -58,6 +58,9 @@ apiEndpoints:
   fetch-benchmark-sentences:
     host: '*'
     paths: '/fetch-benchmark-sentences'
+  fetch-benchmark-compare-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-compare-sentences'
   fetch-benchmark-reports:
     host: '*'
     paths: '/fetch-benchmark-reports'
@@ -147,6 +150,7 @@ pipelines:
       - update-sentences-grade
       - fetch-benchmarks
       - fetch-benchmark-sentences
+      - fetch-benchmark-compare-sentences
       - list-users
       - list-roles
       - create-user
