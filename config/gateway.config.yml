@@ -79,6 +79,9 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
+  upload-benchmark:
+    host: '*'
+    paths: '/upload-benchmark'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
@@ -219,6 +222,7 @@ pipelines:
       - upload-corpus
       - get-corpus
       - update-password-admin
+      - upload-benchmark
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
