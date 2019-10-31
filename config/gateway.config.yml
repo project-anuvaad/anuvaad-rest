@@ -64,6 +64,9 @@ apiEndpoints:
   fetch-benchmark-reports:
     host: '*'
     paths: '/fetch-benchmark-reports'
+  fetch-benchmark-analyzer-reports:
+    host: '*'
+    paths: '/fetch-benchmark-analyzer-reports'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
@@ -129,6 +132,7 @@ pipelines:
       - create-user
       - update-user-status
       - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -159,6 +163,7 @@ pipelines:
       - create-user
       - update-user-status
       - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
       - translate-with-hemat
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
