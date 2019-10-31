@@ -59,12 +59,42 @@ apiEndpoints:
   fetch-benchmark-sentences:
     host: '*'
     paths: '/fetch-benchmark-sentences'
+  fetch-benchmark-compare-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-compare-sentences'
+  fetch-benchmark-reports:
+    host: '*'
+    paths: '/fetch-benchmark-reports'
+  fetch-benchmark-analyzer-reports:
+    host: '*'
+    paths: '/fetch-benchmark-analyzer-reports'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
   translate-source:
     host: '*'
     paths: '/translate-source'
+  list-users:
+    host: '*'
+    paths: '/list-users'
+  list-roles:
+    host: '*'
+    paths: '/list-roles'
+  create-user:
+    host: '*'
+    paths: '/create-user'
+  update-user-status:
+    host: '*'
+    paths: '/update-user-status'
+  upload-benchmark:
+    host: '*'
+    paths: '/upload-benchmark'
+  update-password-admin:
+    host: '*'
+    paths: '/update-password-admin'
+  translate-with-hemat:
+    host: '*'
+    paths: '/translate-with-hemat'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -96,6 +126,28 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
+  admin:
+    apiEndpoints:
+      - list-users
+      - list-roles
+      - create-user
+      - update-user-status
+      - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - key-auth:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxy 
+              changeOrigin: true
   corpus:
     apiEndpoints:
       - fetch-corpus-sentences
@@ -106,6 +158,14 @@ pipelines:
       - update-sentences-grade
       - fetch-benchmarks
       - fetch-benchmark-sentences
+      - fetch-benchmark-compare-sentences
+      - list-users
+      - list-roles
+      - create-user
+      - update-user-status
+      - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
+      - translate-with-hemat
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -175,6 +235,8 @@ pipelines:
       - update-password
       - upload-corpus
       - get-corpus
+      - update-password-admin
+      - upload-benchmark
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
