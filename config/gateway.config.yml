@@ -11,6 +11,12 @@ apiEndpoints:
   translate-docx:
     host: '*'
     paths: '/v2/translate-docx'
+  fetch-languages:
+    host: '*'
+    paths: '/fetch-languages'
+  fetch-models:
+    host: '*'
+    paths: '/fetch-models'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
@@ -134,6 +140,8 @@ pipelines:
       - update-user-status
       - fetch-benchmark-reports
       - fetch-benchmark-analyzer-reports
+      - fetch-models
+      - fetch-languages
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
