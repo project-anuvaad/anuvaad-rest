@@ -140,8 +140,6 @@ pipelines:
       - update-user-status
       - fetch-benchmark-reports
       - fetch-benchmark-analyzer-reports
-      - fetch-models
-      - fetch-languages
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -174,6 +172,8 @@ pipelines:
       - fetch-benchmark-reports
       - fetch-benchmark-analyzer-reports
       - translate-with-hemat
+      - fetch-models
+      - fetch-languages
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
