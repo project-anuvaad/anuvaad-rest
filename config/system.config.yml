@@ -28,7 +28,7 @@ accessTokens:
 refreshTokens:
   timeToExpiry: 72000000
 authorizationCodes:
-  timeToExpiry: 3000000
+  timeToExpiry: 72000000
 
 plugins:
   rewrite:
