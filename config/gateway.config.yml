@@ -1,8 +1,9 @@
 http:
-  port: 8080
+  port: ${NODE_PORT:-8080}
+  hostname: 0.0.0.0
 admin:
-  port: 9876
-  host: localhost
+  port: ${ADMIN_PORT:-9876}
+  hostname: 0.0.0.0
 apiEndpoints:
   api:
     host: '*'
@@ -10,6 +11,12 @@ apiEndpoints:
   translate-docx:
     host: '*'
     paths: '/v2/translate-docx'
+  fetch-languages:
+    host: '*'
+    paths: '/fetch-languages'
+  fetch-models:
+    host: '*'
+    paths: '/fetch-models'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
@@ -96,13 +103,13 @@ apiEndpoints:
     paths: '/translate-with-hemat'
 serviceEndpoints:
   httpbin:
-    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'
+    url: ${PYTHON_URL:-'http://gateway_python:5001/'}
   auto:
-    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/'
+    url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
   corpusproxy:
-    url: 'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'
+    url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
-    url: 'http://52.40.71.62:3003/translator/'
+    url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
 policies:
   - basic-auth
   - cors
@@ -165,6 +172,8 @@ pipelines:
       - fetch-benchmark-reports
       - fetch-benchmark-analyzer-reports
       - translate-with-hemat
+      - fetch-models
+      - fetch-languages
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -251,3 +260,4 @@ pipelines:
               serviceEndpoint: httpbin 
               changeOrigin: true
   
+
