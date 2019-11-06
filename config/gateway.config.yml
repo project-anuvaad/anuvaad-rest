@@ -120,10 +120,8 @@ policies:
   - proxy
   - rate-limit
   - headers
-  - 
-    rewrite:
-          - 
-            condition:
+  - rewrite:
+          - condition:
               name: pathmatch
               match: /*
             action:
