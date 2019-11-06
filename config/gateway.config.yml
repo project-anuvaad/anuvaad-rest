@@ -120,7 +120,6 @@ policies:
   - proxy
   - rate-limit
   - headers
-  - rewrite
 pipelines:
   pipeline1:
     apiEndpoints:
@@ -260,12 +259,5 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-          - rewrite:
-            - condition:
-                name: pathmatch
-                match: /*
-              action:
-                rewrite: http://developers.anuvaad.org/
-                redirect: 302
   
 
