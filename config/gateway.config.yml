@@ -120,6 +120,7 @@ policies:
   - proxy
   - rate-limit
   - headers
+  - rewrite
 pipelines:
   pipeline1:
     apiEndpoints:
