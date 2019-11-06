@@ -24,11 +24,11 @@ session:
   resave: false
   saveUninitialized: false
 accessTokens:
-  timeToExpiry: 72000000
+  timeToExpiry: 720000000
 refreshTokens:
-  timeToExpiry: 72000000
+  timeToExpiry: 720000000
 authorizationCodes:
-  timeToExpiry: 72000000
+  timeToExpiry: 720000000
 
 plugins:
   rewrite:
