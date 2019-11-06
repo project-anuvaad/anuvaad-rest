@@ -103,11 +103,11 @@ apiEndpoints:
     paths: '/translate-with-hemat'
 serviceEndpoints:
   httpbin:
-    url: ${PYTHON_URL:-'http://gateway_python:5001/'}
+    url: ${PYTHON_URL:-'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/corpus/'}
   auto:
-    url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
+    url: ${AUTO_URL:-'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/'}
   corpusproxy:
-    url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
+    url: ${NODE_URL:-'http://nlp-nmt-160078446.us-west-2.elb.amazonaws.com/auto/anuvaad/v1/'}
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
 policies:
