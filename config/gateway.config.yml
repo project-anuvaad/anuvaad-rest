@@ -204,7 +204,7 @@ pipelines:
                 requestID: 'requestID'
       - rate-limit:
         - action:                         # allow
-            max: 5                       # max 5 request
+            max: 50                       # max 50 request
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
@@ -226,7 +226,7 @@ pipelines:
                 requestID: 'requestID'
       - rate-limit:
         - action:                         # allow
-            max: 5                       # max 5 request
+            max: 50                       # max 50 request
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
