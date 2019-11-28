@@ -8,12 +8,27 @@ apiEndpoints:
   api:
     host: '*'
     paths: '/translate-docx'
+  translate-docx:
+    host: '*'
+    paths: '/v2/translate-docx'
+  fetch-languages:
+    host: '*'
+    paths: '/fetch-languages'
+  fetch-models:
+    host: '*'
+    paths: '/fetch-models'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  translation_en:
+    host: '*'
+    paths: '/translation_en'
+  translation_hi:
+    host: '*'
+    paths: '/translation_hi'
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
@@ -41,17 +56,60 @@ apiEndpoints:
   upload-corpus:
     host: '*'
     paths: '/upload-corpus'
+  translate:
+    host: '*'
+    paths: '/translate'
+  fetch-benchmarks:
+    host: '*'
+    paths: '/fetch-benchmarks'
+  fetch-benchmark-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-sentences'
+  fetch-benchmark-compare-sentences:
+    host: '*'
+    paths: '/fetch-benchmark-compare-sentences'
+  fetch-benchmark-reports:
+    host: '*'
+    paths: '/fetch-benchmark-reports'
+  fetch-benchmark-analyzer-reports:
+    host: '*'
+    paths: '/fetch-benchmark-analyzer-reports'
   get-corpus:
     host: '*'
     paths: '/get-corpus'
   translate-source:
     host: '*'
     paths: '/translate-source'
+  list-users:
+    host: '*'
+    paths: '/list-users'
+  list-roles:
+    host: '*'
+    paths: '/list-roles'
+  create-user:
+    host: '*'
+    paths: '/create-user'
+  update-user-status:
+    host: '*'
+    paths: '/update-user-status'
+  upload-benchmark:
+    host: '*'
+    paths: '/upload-benchmark'
+  update-password-admin:
+    host: '*'
+    paths: '/update-password-admin'
+  translate-with-hemat:
+    host: '*'
+    paths: '/translate-with-hemat'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
+  auto:
+    url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
   corpusproxy:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
+  translation:
+    url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
 policies:
   - basic-auth
   - cors
@@ -74,6 +132,28 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
+  admin:
+    apiEndpoints:
+      - list-users
+      - list-roles
+      - create-user
+      - update-user-status
+      - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - key-auth:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxy 
+              changeOrigin: true
   corpus:
     apiEndpoints:
       - fetch-corpus-sentences
@@ -82,6 +162,18 @@ pipelines:
       - update-sentences
       - update-sentences-status
       - update-sentences-grade
+      - fetch-benchmarks
+      - fetch-benchmark-sentences
+      - fetch-benchmark-compare-sentences
+      - list-users
+      - list-roles
+      - create-user
+      - update-user-status
+      - fetch-benchmark-reports
+      - fetch-benchmark-analyzer-reports
+      - translate-with-hemat
+      - fetch-models
+      - fetch-languages
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -96,15 +188,63 @@ pipelines:
           - action:
               serviceEndpoint: corpusproxy 
               changeOrigin: true
+  translation:
+    apiEndpoints:
+      - translation_en
+      - translation_hi
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 50                       # max 50 request
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
+      - proxy:
+          - action:
+              serviceEndpoint: translation 
+              changeOrigin: true
+  auto:
+    apiEndpoints:
+      - translate
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 50                       # max 50 request
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
+      - proxy:
+          - action:
+              serviceEndpoint: auto 
+              changeOrigin: true
   default:
     apiEndpoints:
       - api
+      - translate-docx
       - fetch-process
       - fetch-sentences
       - get-profile
       - update-password
       - upload-corpus
       - get-corpus
+      - update-password-admin
+      - upload-benchmark
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
