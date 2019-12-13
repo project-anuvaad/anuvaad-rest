@@ -23,6 +23,9 @@ apiEndpoints:
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  save-paragraph-workspace:
+    host: '*'
+    paths: '/save-paragraph-workspace'
   translation_en:
     host: '*'
     paths: '/translation_en'
@@ -157,6 +160,7 @@ pipelines:
   corpus:
     apiEndpoints:
       - fetch-corpus-sentences
+      - save-paragraph-workspace
       - fetch-corpus
       - translate-source
       - update-sentences
