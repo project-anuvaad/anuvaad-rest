@@ -101,6 +101,9 @@ apiEndpoints:
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
+  fetch-paragraph-workspace:
+    host: '*'
+    paths: '/fetch-paragraph-workspace'
   translate-with-hemat:
     host: '*'
     paths: '/translate-with-hemat'
@@ -178,6 +181,7 @@ pipelines:
       - translate-with-hemat
       - fetch-models
       - fetch-languages
+      - fetch-paragraph-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
