@@ -104,6 +104,9 @@ apiEndpoints:
   fetch-paragraph-workspace:
     host: '*'
     paths: '/fetch-paragraph-workspace'
+  fetch-paragraph-workspace-detail:
+    host: '*'
+    paths: '/fetch-paragraph-workspace-detail'
   translate-with-hemat:
     host: '*'
     paths: '/translate-with-hemat'
@@ -182,6 +185,7 @@ pipelines:
       - fetch-models
       - fetch-languages
       - fetch-paragraph-workspace
+      - fetch-paragraph-workspace-detail
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
