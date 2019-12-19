@@ -142,10 +142,10 @@ pipelines:
   pipeline1:
     apiEndpoints:
       - test-api
+      - download-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - basic-auth:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
@@ -268,7 +268,6 @@ pipelines:
       - get-corpus
       - update-password-admin
       - upload-benchmark
-      - download-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
