@@ -116,6 +116,9 @@ apiEndpoints:
   fetch-default-config:
     host: '*'
     paths: '/fetch-default-config'
+  download-docx:
+    host: '*'
+    paths: '/download-docx'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -265,6 +268,7 @@ pipelines:
       - get-corpus
       - update-password-admin
       - upload-benchmark
+      - download-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
