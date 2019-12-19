@@ -113,6 +113,9 @@ apiEndpoints:
   translate-with-hemat:
     host: '*'
     paths: '/translate-with-hemat'
+  fetch-default-config:
+    host: '*'
+    paths: '/fetch-default-config'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -190,6 +193,7 @@ pipelines:
       - fetch-paragraph-workspace
       - fetch-paragraph-workspace-detail
       - start-tokenization
+      - fetch-default-config
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
