@@ -95,9 +95,9 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
-  upload-benchmark:
+  save-benchmark:
     host: '*'
-    paths: '/upload-benchmark'
+    paths: '/save-benchmark'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
@@ -270,7 +270,7 @@ pipelines:
       - upload-corpus
       - get-corpus
       - update-password-admin
-      - upload-benchmark
+      - save-benchmark
       - save-translated-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
