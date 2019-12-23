@@ -23,6 +23,9 @@ apiEndpoints:
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  save-paragraph-workspace:
+    host: '*'
+    paths: '/save-paragraph-workspace'
   translation_en:
     host: '*'
     paths: '/translation_en'
@@ -92,15 +95,33 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
-  upload-benchmark:
+  save-benchmark:
     host: '*'
-    paths: '/upload-benchmark'
+    paths: '/save-benchmark'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
+  fetch-paragraph-workspace:
+    host: '*'
+    paths: '/fetch-paragraph-workspace'
+  start-tokenization:
+    host: '*'
+    paths: '/start-tokenization'
+  fetch-paragraph-workspace-detail:
+    host: '*'
+    paths: '/fetch-paragraph-workspace-detail'
   translate-with-hemat:
     host: '*'
     paths: '/translate-with-hemat'
+  fetch-default-config:
+    host: '*'
+    paths: '/fetch-default-config'
+  download-docx:
+    host: '*'
+    paths: '/download-docx'
+  save-translated-docx:
+    host: '*'
+    paths: '/save-translated-docx'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -124,10 +145,10 @@ pipelines:
   pipeline1:
     apiEndpoints:
       - test-api
+      - download-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - basic-auth:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
@@ -157,6 +178,7 @@ pipelines:
   corpus:
     apiEndpoints:
       - fetch-corpus-sentences
+      - save-paragraph-workspace
       - fetch-corpus
       - translate-source
       - update-sentences
@@ -174,6 +196,10 @@ pipelines:
       - translate-with-hemat
       - fetch-models
       - fetch-languages
+      - fetch-paragraph-workspace
+      - fetch-paragraph-workspace-detail
+      - start-tokenization
+      - fetch-default-config
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
@@ -244,7 +270,8 @@ pipelines:
       - upload-corpus
       - get-corpus
       - update-password-admin
-      - upload-benchmark
+      - save-benchmark
+      - save-translated-docx
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
