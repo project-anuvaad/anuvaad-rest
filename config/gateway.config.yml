@@ -125,6 +125,9 @@ apiEndpoints:
   save-mt-workspace:
     host: '*'
     paths: '/save-mt-workspace'
+  fetch-mt-workspace:
+    host: '*'
+    paths: '/fetch-mt-workspace'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -208,6 +211,7 @@ pipelines:
       - start-tokenization
       - fetch-default-config
       - save-mt-workspace
+      - fetch-mt-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
