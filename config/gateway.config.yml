@@ -164,7 +164,11 @@ pipelines:
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - key-auth:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
       - headers:
          - action:
               headersPrefix: 'ad-'
