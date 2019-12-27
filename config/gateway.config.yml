@@ -122,6 +122,9 @@ apiEndpoints:
   save-translated-docx:
     host: '*'
     paths: '/save-translated-docx'
+  save-mt-workspace:
+    host: '*'
+    paths: '/save-mt-workspace'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -204,6 +207,7 @@ pipelines:
       - fetch-paragraph-workspace-detail
       - start-tokenization
       - fetch-default-config
+      - save-mt-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
