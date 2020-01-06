@@ -131,6 +131,15 @@ apiEndpoints:
   fetch-mt-workspace-detail:
     host: '*'
     paths: '/fetch-mt-workspace-detail'
+  fetch-high-courts:
+    host: '*'
+    paths: '/fetch-high-courts'
+  update-high-court:
+    host: '*'
+    paths: '/update-high-court'
+  save-high-court:
+    host: '*'
+    paths: '/save-high-court'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -216,6 +225,9 @@ pipelines:
       - save-mt-workspace
       - fetch-mt-workspace
       - fetch-mt-workspace-detail
+      - fetch-high-courts
+      - update-high-court
+      - save-high-court
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
