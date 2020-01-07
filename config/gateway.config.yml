@@ -122,6 +122,24 @@ apiEndpoints:
   save-translated-docx:
     host: '*'
     paths: '/save-translated-docx'
+  save-mt-workspace:
+    host: '*'
+    paths: '/save-mt-workspace'
+  fetch-mt-workspace:
+    host: '*'
+    paths: '/fetch-mt-workspace'
+  fetch-mt-workspace-detail:
+    host: '*'
+    paths: '/fetch-mt-workspace-detail'
+  fetch-high-courts:
+    host: '*'
+    paths: '/fetch-high-courts'
+  update-high-court:
+    host: '*'
+    paths: '/update-high-court'
+  save-high-court:
+    host: '*'
+    paths: '/save-high-court'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -164,7 +182,11 @@ pipelines:
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - key-auth:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
       - headers:
          - action:
               headersPrefix: 'ad-'
@@ -200,9 +222,19 @@ pipelines:
       - fetch-paragraph-workspace-detail
       - start-tokenization
       - fetch-default-config
+      - save-mt-workspace
+      - fetch-mt-workspace
+      - fetch-mt-workspace-detail
+      - fetch-high-courts
+      - update-high-court
+      - save-high-court
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -275,6 +307,10 @@ pipelines:
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
