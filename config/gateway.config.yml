@@ -140,6 +140,9 @@ apiEndpoints:
   save-high-court:
     host: '*'
     paths: '/save-high-court'
+  migrate-old-data:
+    host: '*'
+    paths: '/migrate-old-data'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -228,6 +231,7 @@ pipelines:
       - fetch-high-courts
       - update-high-court
       - save-high-court
+      - migrate-old-data
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
