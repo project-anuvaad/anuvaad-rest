@@ -143,6 +143,9 @@ apiEndpoints:
   migrate-old-data:
     host: '*'
     paths: '/migrate-old-data'
+  translate-anuvaad:
+    host: '*'
+    paths: '/translate-anuvaad'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -254,6 +257,7 @@ pipelines:
     apiEndpoints:
       - translation_en
       - translation_hi
+      - translate-anuvaad
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
