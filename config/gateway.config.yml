@@ -241,6 +241,8 @@ pipelines:
       - update-high-court
       - save-high-court
       - migrate-old-data
+      - save-search-replace-workspace
+      - fetch-search-replace-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
