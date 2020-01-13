@@ -146,6 +146,12 @@ apiEndpoints:
   translate-anuvaad:
     host: '*'
     paths: '/translate-anuvaad'
+  save-search-replace-workspace:
+    host: '*'
+    paths: '/save-search-replace-workspace'
+  fetch-search-replace-workspace:
+    host: '*'
+    paths: '/fetch-search-replace-workspace'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
