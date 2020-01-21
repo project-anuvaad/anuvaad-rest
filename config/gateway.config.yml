@@ -35,6 +35,9 @@ apiEndpoints:
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
+  remove-process:
+    host: '*'
+    paths: '/remove-process'
   fetch-corpus:
     host: '*'
     paths: '/fetch-corpus'
@@ -330,6 +333,7 @@ pipelines:
       - update-password-admin
       - save-benchmark
       - save-translated-docx
+      - remove-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
