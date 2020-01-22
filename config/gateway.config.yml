@@ -161,6 +161,9 @@ apiEndpoints:
   update-search-replace-sentence:
     host: '*'
     paths: '/update-search-replace-sentence'
+  fetch-search-replace-workspace-detail:
+    host: '*'
+    paths: '/fetch-search-replace-workspace-detail'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -254,6 +257,7 @@ pipelines:
       - fetch-search-replace-workspace
       - fetch-search-replace-sentence
       - update-search-replace-sentence
+      - fetch-search-replace-workspace-detail
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
