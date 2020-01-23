@@ -276,7 +276,6 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
-                rootSpan: 'rootSpan'
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
@@ -301,7 +300,6 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
-                rootSpan: 'rootSpan'
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
@@ -330,7 +328,6 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
-                rootSpan: 'rootSpan'
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
@@ -370,11 +367,9 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
-                rootSpan: 'rootSpan'
       - proxy:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
   
 
-              
