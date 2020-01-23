@@ -183,6 +183,7 @@ policies:
   - proxy
   - rate-limit
   - headers
+  - jaeger-policy
 pipelines:
   pipeline1:
     apiEndpoints:
@@ -191,6 +192,7 @@ pipelines:
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
+      - jaeger-policy:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
@@ -205,6 +207,7 @@ pipelines:
       - fetch-benchmark-analyzer-reports
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -260,6 +263,7 @@ pipelines:
       - fetch-search-replace-workspace-detail
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -283,6 +287,7 @@ pipelines:
       - translate-anuvaad
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -310,6 +315,7 @@ pipelines:
       - translate
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -348,6 +354,7 @@ pipelines:
       - remove-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
