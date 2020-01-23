@@ -376,4 +376,3 @@ pipelines:
               serviceEndpoint: httpbin 
               changeOrigin: true
   
-
