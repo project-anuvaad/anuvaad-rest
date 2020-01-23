@@ -29,5 +29,5 @@ authorizationCodes:
 plugins:
   rewrite:
     package: express-gateway-plugin-rewrite
-  express-gateway-plugin-example:
-    param1: 'param from system.config'
+  jaeger-policy:
+    package: express-gateway-plugin-example
