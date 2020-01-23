@@ -26,7 +26,6 @@ refreshTokens:
 authorizationCodes:
   timeToExpiry: 720000000
 
-
 plugins:
   rewrite:
     package: express-gateway-plugin-rewrite
