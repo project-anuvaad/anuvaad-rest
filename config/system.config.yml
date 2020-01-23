@@ -5,10 +5,6 @@ db:
     port: ${REDIS_PORT:-6379}
     namespace: AG
 
-plugins:
-  express-gateway-plugin-example:
-    param1: 'param from system.config'
-
 crypto:
   cipherKey: sensitiveKey
   algorithm: aes256
@@ -33,3 +29,5 @@ authorizationCodes:
 plugins:
   rewrite:
     package: express-gateway-plugin-rewrite
+  express-gateway-plugin-example:
+    param1: 'param from system.config'
