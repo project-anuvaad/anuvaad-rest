@@ -164,6 +164,9 @@ apiEndpoints:
   fetch-search-replace-workspace-detail:
     host: '*'
     paths: '/fetch-search-replace-workspace-detail'
+  save-mt-workspace-data:
+    host: '*'
+    paths: '/save-mt-workspace-data'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -261,6 +264,7 @@ pipelines:
       - fetch-search-replace-sentence
       - update-search-replace-sentence
       - fetch-search-replace-workspace-detail
+      - save-mt-workspace-data
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
