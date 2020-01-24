@@ -35,6 +35,9 @@ apiEndpoints:
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
+  remove-process:
+    host: '*'
+    paths: '/remove-process'
   fetch-corpus:
     host: '*'
     paths: '/fetch-corpus'
@@ -140,6 +143,30 @@ apiEndpoints:
   save-high-court:
     host: '*'
     paths: '/save-high-court'
+  migrate-old-data:
+    host: '*'
+    paths: '/migrate-old-data'
+  translate-anuvaad:
+    host: '*'
+    paths: '/translate-anuvaad'
+  save-search-replace-workspace:
+    host: '*'
+    paths: '/save-search-replace-workspace'
+  fetch-search-replace-workspace:
+    host: '*'
+    paths: '/fetch-search-replace-workspace'
+  fetch-search-replace-sentence:
+    host: '*'
+    paths: '/fetch-search-replace-sentence'
+  update-search-replace-sentence:
+    host: '*'
+    paths: '/update-search-replace-sentence'
+  fetch-search-replace-workspace-detail:
+    host: '*'
+    paths: '/fetch-search-replace-workspace-detail'
+  save-mt-workspace-data:
+    host: '*'
+    paths: '/save-mt-workspace-data'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -159,6 +186,7 @@ policies:
   - proxy
   - rate-limit
   - headers
+  - jaeger-policy
 pipelines:
   pipeline1:
     apiEndpoints:
@@ -167,6 +195,7 @@ pipelines:
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
+      - jaeger-policy:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
@@ -181,6 +210,7 @@ pipelines:
       - fetch-benchmark-analyzer-reports
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -228,8 +258,16 @@ pipelines:
       - fetch-high-courts
       - update-high-court
       - save-high-court
+      - migrate-old-data
+      - save-search-replace-workspace
+      - fetch-search-replace-workspace
+      - fetch-search-replace-sentence
+      - update-search-replace-sentence
+      - fetch-search-replace-workspace-detail
+      - save-mt-workspace-data
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -250,9 +288,15 @@ pipelines:
     apiEndpoints:
       - translation_en
       - translation_hi
+      - translate-anuvaad
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -263,6 +307,7 @@ pipelines:
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
+            delayMs: 0
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
@@ -274,7 +319,12 @@ pipelines:
       - translate
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -285,6 +335,7 @@ pipelines:
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
+            delayMs: 0
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
@@ -304,8 +355,10 @@ pipelines:
       - update-password-admin
       - save-benchmark
       - save-translated-docx
+      - remove-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
          - action:
               origin: true
@@ -322,4 +375,4 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  
+
