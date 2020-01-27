@@ -167,6 +167,9 @@ apiEndpoints:
   save-mt-workspace-data:
     host: '*'
     paths: '/save-mt-workspace-data'
+  doc_report:
+    host: '*'
+    paths: '/doc_report'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -176,6 +179,8 @@ serviceEndpoints:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
+  elastic:
+    url: 'http://172.30.0.55:9200/'
 policies:
   - basic-auth
   - cors
@@ -284,6 +289,20 @@ pipelines:
           - action:
               serviceEndpoint: corpusproxy 
               changeOrigin: true
+  elasticsearch:
+    apiEndpoints:
+      - doc_report
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: elastic 
+              changeOrigin: true
   translation:
     apiEndpoints:
       - translation_en
@@ -375,6 +394,4 @@ pipelines:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  
-
 
