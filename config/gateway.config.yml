@@ -180,7 +180,7 @@ serviceEndpoints:
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
   elastic:
-    url: 'http://172.30.0.55:9200/'
+    url: ${ELASTIC_URL:-'http://52.88.54.220:9200/'}
 policies:
   - basic-auth
   - cors
