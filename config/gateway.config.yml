@@ -170,6 +170,7 @@ apiEndpoints:
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
+    methods: ["GET", "OPTIONS"]
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
