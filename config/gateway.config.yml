@@ -167,6 +167,9 @@ apiEndpoints:
   save-mt-workspace-data:
     host: '*'
     paths: '/save-mt-workspace-data'
+  save-paragraph-workspace-data:
+    host: '*'
+    paths: '/save-paragraph-workspace-data'
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
@@ -271,6 +274,7 @@ pipelines:
       - update-search-replace-sentence
       - fetch-search-replace-workspace-detail
       - save-mt-workspace-data
+      - save-paragraph-workspace-data
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
