@@ -170,6 +170,12 @@ apiEndpoints:
   save-paragraph-workspace-data:
     host: '*'
     paths: '/save-paragraph-workspace-data'
+  fetch-feedback-questions:
+    host: '*'
+    paths: '/fetch-feedback-questions'
+  save-feedback-questions:
+    host: '*'
+    paths: '/save-feedback-questions'
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
@@ -275,6 +281,8 @@ pipelines:
       - fetch-search-replace-workspace-detail
       - save-mt-workspace-data
       - save-paragraph-workspace-data
+      - save-feedback-questions
+      - fetch-feedback-questions
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
