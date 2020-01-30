@@ -176,6 +176,9 @@ apiEndpoints:
   save-feedback-questions:
     host: '*'
     paths: '/save-feedback-questions'
+  check-feedback-pending:
+    host: '*'
+    paths: '/check-feedback-pending'
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
@@ -283,6 +286,7 @@ pipelines:
       - save-paragraph-workspace-data
       - save-feedback-questions
       - fetch-feedback-questions
+      - check-feedback-pending
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
