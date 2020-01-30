@@ -179,6 +179,9 @@ apiEndpoints:
   check-feedback-pending:
     host: '*'
     paths: '/check-feedback-pending'
+  save-captured-feedback:
+    host: '*'
+    paths: '/save-captured-feedback'
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
@@ -287,6 +290,7 @@ pipelines:
       - save-feedback-questions
       - fetch-feedback-questions
       - check-feedback-pending
+      - save-captured-feedback
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
