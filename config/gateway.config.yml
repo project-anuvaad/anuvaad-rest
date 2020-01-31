@@ -182,6 +182,10 @@ apiEndpoints:
   save-captured-feedback:
     host: '*'
     paths: '/save-captured-feedback'
+  feedback_report:
+    host: '*'
+    paths: '/feedback_report/_search'
+    methods: ["GET", "OPTIONS"]
   doc_report:
     host: '*'
     paths: '/doc_report/_search'
@@ -313,6 +317,7 @@ pipelines:
   elasticsearch:
     apiEndpoints:
       - doc_report
+      - feedback_report
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
