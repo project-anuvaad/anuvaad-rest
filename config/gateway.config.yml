@@ -167,6 +167,29 @@ apiEndpoints:
   save-mt-workspace-data:
     host: '*'
     paths: '/save-mt-workspace-data'
+  save-paragraph-workspace-data:
+    host: '*'
+    paths: '/save-paragraph-workspace-data'
+  fetch-feedback-questions:
+    host: '*'
+    paths: '/fetch-feedback-questions'
+  save-feedback-questions:
+    host: '*'
+    paths: '/save-feedback-questions'
+  check-feedback-pending:
+    host: '*'
+    paths: '/check-feedback-pending'
+  save-captured-feedback:
+    host: '*'
+    paths: '/save-captured-feedback'
+  feedback_report:
+    host: '*'
+    paths: '/feedback_report/_search'
+    methods: ["GET", "OPTIONS"]
+  doc_report:
+    host: '*'
+    paths: '/doc_report/_search'
+    methods: ["GET", "OPTIONS"]
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -176,6 +199,8 @@ serviceEndpoints:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
+  elastic:
+    url: ${ELASTIC_URL:-'http://52.88.54.220:9200/'}
 policies:
   - basic-auth
   - cors
@@ -265,6 +290,11 @@ pipelines:
       - update-search-replace-sentence
       - fetch-search-replace-workspace-detail
       - save-mt-workspace-data
+      - save-paragraph-workspace-data
+      - save-feedback-questions
+      - fetch-feedback-questions
+      - check-feedback-pending
+      - save-captured-feedback
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -283,6 +313,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
+              changeOrigin: true
+  elasticsearch:
+    apiEndpoints:
+      - doc_report
+      - feedback_report
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: elastic 
               changeOrigin: true
   translation:
     apiEndpoints:
