@@ -182,6 +182,9 @@ apiEndpoints:
   save-captured-feedback:
     host: '*'
     paths: '/save-captured-feedback'
+  accept-all-search-replace-sentence:
+    host: '*'
+    paths: '/accept-all-search-replace-sentence'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -295,6 +298,7 @@ pipelines:
       - fetch-feedback-questions
       - check-feedback-pending
       - save-captured-feedback
+      - accept-all-search-replace-sentence
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -421,3 +425,5 @@ pipelines:
               serviceEndpoint: httpbin 
               changeOrigin: true
 
+
+              
