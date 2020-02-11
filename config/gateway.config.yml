@@ -188,6 +188,9 @@ apiEndpoints:
   accept-all-search-replace-sentence:
     host: '*'
     paths: '/accept-all-search-replace-sentence'
+  fetch-composition-workspace:
+    host: '*'
+    paths: '/fetch-composition-workspace'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -303,6 +306,7 @@ pipelines:
       - save-captured-feedback
       - accept-all-search-replace-sentence
       - save-composition-workspace
+      - fetch-composition-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
