@@ -122,6 +122,9 @@ apiEndpoints:
   download-docx:
     host: '*'
     paths: '/download-docx'
+  save-composition-workspace:
+    host: '*'
+    paths: '/save-composition-workspace'
   save-translated-docx:
     host: '*'
     paths: '/save-translated-docx'
@@ -299,6 +302,7 @@ pipelines:
       - check-feedback-pending
       - save-captured-feedback
       - accept-all-search-replace-sentence
+      - save-composition-workspace
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
