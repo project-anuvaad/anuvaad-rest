@@ -191,6 +191,9 @@ apiEndpoints:
   fetch-composition-workspace:
     host: '*'
     paths: '/fetch-composition-workspace'
+  fetch-composition-workspace-detail:
+    host: '*'
+    paths: '/fetch-composition-workspace-detail'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -307,6 +310,7 @@ pipelines:
       - accept-all-search-replace-sentence
       - save-composition-workspace
       - fetch-composition-workspace
+      - fetch-composition-workspace-detail
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
