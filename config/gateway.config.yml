@@ -194,6 +194,12 @@ apiEndpoints:
   fetch-composition-workspace-detail:
     host: '*'
     paths: '/fetch-composition-workspace-detail'
+  start-pdf-parse-process:
+    host: '*'
+    paths: '/start-pdf-parse-process'
+  fetch-pdf-parse-process:
+    host: '*'
+    paths: '/fetch-pdf-parse-process'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -311,6 +317,8 @@ pipelines:
       - save-composition-workspace
       - fetch-composition-workspace
       - fetch-composition-workspace-detail
+      - start-pdf-parse-process
+      - fetch-pdf-parse-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
