@@ -200,6 +200,9 @@ apiEndpoints:
   fetch-pdf-parse-process:
     host: '*'
     paths: '/fetch-pdf-parse-process'
+  fetch-pdf-sentences:
+    host: '*'
+    paths: '/fetch-pdf-sentences'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -319,6 +322,7 @@ pipelines:
       - fetch-composition-workspace-detail
       - start-pdf-parse-process
       - fetch-pdf-parse-process
+      - fetch-pdf-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
