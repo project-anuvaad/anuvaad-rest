@@ -203,6 +203,9 @@ apiEndpoints:
   fetch-pdf-sentences:
     host: '*'
     paths: '/fetch-pdf-sentences'
+  extract-paragraphs:
+    host: '*'
+    paths: '/extract-paragraphs'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -323,6 +326,7 @@ pipelines:
       - start-pdf-parse-process
       - fetch-pdf-parse-process
       - fetch-pdf-sentences
+      - extract-paragraphs
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
