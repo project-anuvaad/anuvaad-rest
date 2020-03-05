@@ -206,6 +206,9 @@ apiEndpoints:
   extract-paragraphs:
     host: '*'
     paths: '/extract-paragraphs'
+  tokenize-sentence:
+    host: '*'
+    paths: '/tokenize-sentence'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -241,6 +244,7 @@ pipelines:
     apiEndpoints:
       - test-api
       - download-docx
+      - tokenize-sentence
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
