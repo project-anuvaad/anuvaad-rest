@@ -206,6 +206,9 @@ apiEndpoints:
   extract-paragraphs:
     host: '*'
     paths: '/extract-paragraphs'
+  extract-paragraphs-pagewise:
+    host: '*'
+    paths: '/extract-paragraphs-pagewise'
   tokenize-sentence:
     host: '*'
     paths: '/tokenize-sentence'
@@ -331,6 +334,7 @@ pipelines:
       - fetch-pdf-parse-process
       - fetch-pdf-sentences
       - extract-paragraphs
+      - extract-paragraphs-pagewise
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
