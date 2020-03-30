@@ -215,6 +215,9 @@ apiEndpoints:
   interactive-translation:
     host: '*'
     paths: '/interactive-translation'
+  ner:
+    host: '*'
+    paths: '/ner'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -253,6 +256,7 @@ pipelines:
       - test-api
       - download-docx
       - tokenize-sentence
+      - ner
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
