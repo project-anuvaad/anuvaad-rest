@@ -233,6 +233,8 @@ serviceEndpoints:
     url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
   corpusproxy:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
+  corpusproxywithoutauth:
+    url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
   elastic:
@@ -342,8 +344,6 @@ pipelines:
       - start-pdf-parse-process
       - fetch-pdf-parse-process
       - fetch-pdf-sentences
-      - extract-paragraphs
-      - extract-paragraphs-pagewise
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -435,6 +435,27 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: interactive 
+              changeOrigin: true
+  corpusproxywithoutauth:
+    apiEndpoints:
+      - extract-paragraphs
+      - extract-paragraphs-pagewise
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxywithoutauth 
               changeOrigin: true
   auto:
     apiEndpoints:
