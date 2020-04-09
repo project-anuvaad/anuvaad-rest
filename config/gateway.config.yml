@@ -215,6 +215,9 @@ apiEndpoints:
   interactive-translation:
     host: '*'
     paths: '/interactive-translation'
+  convert-pdf-to-doc:
+    host: '*'
+    paths: '/convert-pdf-to-doc'
   ner:
     host: '*'
     paths: '/ner'
@@ -344,6 +347,7 @@ pipelines:
       - start-pdf-parse-process
       - fetch-pdf-parse-process
       - fetch-pdf-sentences
+      - convert-pdf-to-doc
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
