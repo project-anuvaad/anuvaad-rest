@@ -221,6 +221,9 @@ apiEndpoints:
   ner:
     host: '*'
     paths: '/ner'
+  translate-pdf:
+    host: '*'
+    paths: '/translate-pdf'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -348,6 +351,7 @@ pipelines:
       - fetch-pdf-parse-process
       - fetch-pdf-sentences
       - convert-pdf-to-doc
+      - translate-pdf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
