@@ -224,6 +224,9 @@ apiEndpoints:
   translate-pdf:
     host: '*'
     paths: '/translate-pdf'
+  update-pdf-sentences:
+    host: '*'
+    paths: '/update-pdf-sentences'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -352,6 +355,7 @@ pipelines:
       - fetch-pdf-sentences
       - convert-pdf-to-doc
       - translate-pdf
+      - update-pdf-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
