@@ -212,6 +212,9 @@ apiEndpoints:
   tokenize-sentence:
     host: '*'
     paths: '/tokenize-sentence'
+  tokenize-hin-sentence:
+    host: '*'
+    paths: '/tokenize-hin-sentence'
   interactive-translation:
     host: '*'
     paths: '/interactive-translation'
@@ -267,6 +270,7 @@ pipelines:
       - test-api
       - download-docx
       - tokenize-sentence
+      - tokenize-hin-sentence
       - ner
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
