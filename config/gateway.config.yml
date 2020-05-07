@@ -221,6 +221,9 @@ apiEndpoints:
   convert-pdf-to-doc:
     host: '*'
     paths: '/convert-pdf-to-doc'
+  lines:
+    host: '*'
+    paths: '/lines'
   ner:
     host: '*'
     paths: '/ner'
@@ -253,6 +256,8 @@ serviceEndpoints:
     url: ${ELASTIC_URL:-'http://52.88.54.220:9200/'}
   interactive:
     url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
+  ocr_server:
+    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
 policies:
   - basic-auth
   - cors
@@ -451,6 +456,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: interactive 
+              changeOrigin: true
+  ocr:
+    apiEndpoints:
+      - lines
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ocr_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
