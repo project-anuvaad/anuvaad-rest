@@ -233,6 +233,9 @@ apiEndpoints:
   update-pdf-sentences:
     host: '*'
     paths: '/update-pdf-sentences'
+  make-doc-from-sentences:
+    host: '*'
+    paths: '/make-doc-from-sentences'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -365,6 +368,7 @@ pipelines:
       - convert-pdf-to-doc
       - translate-pdf
       - update-pdf-sentences
+      - make-doc-from-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
