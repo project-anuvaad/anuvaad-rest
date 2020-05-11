@@ -223,10 +223,10 @@ apiEndpoints:
     paths: '/convert-pdf-to-doc'
   lines:
     host: '*'
-    paths: '/ocr/lines'
+    paths: '/lines'
   extract:
     host: '*'
-    paths: '/rect/extract'
+    paths: '/extract'
   ner:
     host: '*'
     paths: '/ner'
@@ -263,7 +263,7 @@ serviceEndpoints:
   interactive:
     url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
   ocr_server:
-    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/'}
+    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
 policies:
   - basic-auth
   - cors
