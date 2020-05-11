@@ -223,7 +223,10 @@ apiEndpoints:
     paths: '/convert-pdf-to-doc'
   lines:
     host: '*'
-    paths: '/lines'
+    paths: '/ocr/lines'
+  extract:
+    host: '*'
+    paths: '/rect/extract'
   ner:
     host: '*'
     paths: '/ner'
@@ -260,7 +263,7 @@ serviceEndpoints:
   interactive:
     url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
   ocr_server:
-    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
+    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/'}
 policies:
   - basic-auth
   - cors
@@ -464,6 +467,7 @@ pipelines:
   ocr:
     apiEndpoints:
       - lines
+      - extract
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
