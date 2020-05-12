@@ -242,6 +242,9 @@ apiEndpoints:
   extract-pdf-paragraphs:
     host: '*'
     paths: '/extract-pdf-paragraphs'
+  aadhaar:
+    host: '*'
+    paths: '/aadhaar'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -267,6 +270,8 @@ serviceEndpoints:
     url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
   ocr_server:
     url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
+  ocr_aadhar_server:
+    url: 'http://172.30.0.103:5000/api/v1/ocr/'
 policies:
   - basic-auth
   - cors
@@ -483,6 +488,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: ocr_server 
+              changeOrigin: true
+  ocr_aadhar:
+    apiEndpoints:
+      - aadhaar
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ocr_aadhar_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
