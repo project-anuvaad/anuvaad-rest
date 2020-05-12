@@ -245,6 +245,9 @@ apiEndpoints:
   aadhaar:
     host: '*'
     paths: '/aadhaar'
+  ner_v0:
+    host: '*'
+    paths: '/v0/ner'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -272,6 +275,8 @@ serviceEndpoints:
     url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
   ocr_aadhar_server:
     url: 'http://172.30.0.103:5000/api/v1/ocr/'
+  ner_server:
+    url: 'http://172.30.0.103:5001/api/'
 policies:
   - basic-auth
   - cors
@@ -503,6 +508,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: ocr_aadhar_server 
+              changeOrigin: true
+  ner_server_proxy:
+    apiEndpoints:
+      - ner_v0
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ner_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
