@@ -242,6 +242,9 @@ apiEndpoints:
   extract-pdf-paragraphs:
     host: '*'
     paths: '/extract-pdf-paragraphs'
+  extract-pdf-to-sentences:
+    host: '*'
+    paths: '/extract-pdf-to-sentences'
   aadhaar:
     host: '*'
     paths: '/aadhaar'
@@ -386,6 +389,7 @@ pipelines:
       - update-pdf-sentences
       - make-doc-from-sentences
       - extract-pdf-paragraphs
+      - extract-pdf-to-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
