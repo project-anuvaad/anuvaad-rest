@@ -330,6 +330,7 @@ pipelines:
               methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
               maxAge: 100000000
       - oauth2:
+      - key-auth:
       - headers:
          - action:
               headersPrefix: 'ad-'
