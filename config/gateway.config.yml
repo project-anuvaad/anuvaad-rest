@@ -89,6 +89,8 @@ apiEndpoints:
   list-users:
     host: '*'
     paths: '/list-users'
+    scopes:
+      - 'admin'
   list-roles:
     host: '*'
     paths: '/list-roles'
@@ -98,12 +100,16 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
+    scopes:
+      - 'admin'
   save-benchmark:
     host: '*'
     paths: '/save-benchmark'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
+    scopes:
+      - 'admin'
   fetch-paragraph-workspace:
     host: '*'
     paths: '/fetch-paragraph-workspace'
