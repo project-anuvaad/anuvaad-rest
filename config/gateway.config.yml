@@ -245,6 +245,9 @@ apiEndpoints:
   extract-pdf-to-sentences:
     host: '*'
     paths: '/extract-pdf-to-sentences'
+  merge-split-sentence:
+    host: '*'
+    paths: '/merge-split-sentence'
   aadhaar:
     host: '*'
     paths: '/aadhaar'
@@ -390,6 +393,7 @@ pipelines:
       - make-doc-from-sentences
       - extract-pdf-paragraphs
       - extract-pdf-to-sentences
+      - merge-split-sentence
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
