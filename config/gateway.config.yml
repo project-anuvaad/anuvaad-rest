@@ -333,6 +333,7 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
+                role: 'req.user.scope'
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
@@ -351,10 +352,6 @@ pipelines:
       - fetch-benchmark-compare-sentences
       - list-users
       - list-roles
-      - create-user
-      - update-user-status
-      - fetch-benchmark-reports
-      - fetch-benchmark-analyzer-reports
       - translate-with-hemat
       - fetch-models
       - fetch-languages
