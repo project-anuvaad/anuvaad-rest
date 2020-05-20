@@ -89,12 +89,16 @@ apiEndpoints:
   list-users:
     host: '*'
     paths: '/list-users'
+    scopes:
+      - 'admin'
   list-roles:
     host: '*'
     paths: '/list-roles'
   create-user:
     host: '*'
     paths: '/create-user'
+    scopes:
+      - 'admin'
   update-user-status:
     host: '*'
     paths: '/update-user-status'
@@ -106,6 +110,8 @@ apiEndpoints:
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
+    scopes:
+      - 'admin'
   fetch-paragraph-workspace:
     host: '*'
     paths: '/fetch-paragraph-workspace'
@@ -615,5 +621,4 @@ pipelines:
 
 
 
-              
               
