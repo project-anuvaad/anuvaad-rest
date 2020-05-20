@@ -99,7 +99,7 @@ apiEndpoints:
     host: '*'
     paths: '/update-user-status'
     scopes:
-      - ['admin']
+      - 'admin'
   save-benchmark:
     host: '*'
     paths: '/save-benchmark'
