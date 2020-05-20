@@ -98,6 +98,8 @@ apiEndpoints:
   update-user-status:
     host: '*'
     paths: '/update-user-status'
+    scopes:
+      - 'admin'
   save-benchmark:
     host: '*'
     paths: '/save-benchmark'
@@ -333,7 +335,6 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
-                role: 'req.user.scope'
       - proxy:
           - action:
               serviceEndpoint: corpusproxy 
