@@ -543,6 +543,7 @@ pipelines:
     apiEndpoints:
       - extract-paragraphs
       - extract-paragraphs-pagewise
+      - signup-user
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
