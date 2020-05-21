@@ -83,6 +83,9 @@ apiEndpoints:
   get-corpus:
     host: '*'
     paths: '/get-corpus'
+  signup-user:
+    host: '*'
+    paths: '/signup-user'
   translate-source:
     host: '*'
     paths: '/translate-source'
