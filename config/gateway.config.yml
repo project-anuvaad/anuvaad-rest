@@ -214,6 +214,9 @@ apiEndpoints:
   fetch-pdf-sentences:
     host: '*'
     paths: '/fetch-pdf-sentences'
+  activate-account:
+    host: '*'
+    paths: '/activate-account'
   extract-paragraphs:
     host: '*'
     paths: '/extract-paragraphs'
@@ -544,6 +547,7 @@ pipelines:
       - extract-paragraphs
       - extract-paragraphs-pagewise
       - signup-user
+      - activate-account
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
