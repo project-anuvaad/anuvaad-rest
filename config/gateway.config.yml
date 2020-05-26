@@ -262,6 +262,9 @@ apiEndpoints:
   merge-split-sentence:
     host: '*'
     paths: '/merge-split-sentence'
+  lines_v2:
+    host: '*'
+    paths: '/api/v2/ocr/lines'
   aadhaar:
     host: '*'
     paths: '/aadhaar'
@@ -293,6 +296,8 @@ serviceEndpoints:
     url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
   ocr_server:
     url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
+  preprocessing_server:
+    url: ${PRE_PROCESSING_SERVER_URL:-'http://172.30.0.103:6000/'}
   ocr_aadhar_server:
     url: 'http://172.30.0.103:5000/api/v1/ocr/'
   ner_server:
@@ -511,6 +516,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: ocr_server 
+              changeOrigin: true
+  preprocessing:
+    apiEndpoints:
+      - lines_v2
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: preprocessing_server 
               changeOrigin: true
   ocr_aadhar:
     apiEndpoints:
