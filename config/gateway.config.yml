@@ -656,6 +656,12 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
+      - rate-limit:
+         - action:                         # allow
+              max: 5                       # max 5 request
+              delayMs: 0
+              windowMs: 1000              # per 1 seconds
+              rateLimitBy: "${req.ip}"
       - proxy:
           - action:
               serviceEndpoint: httpbin 
