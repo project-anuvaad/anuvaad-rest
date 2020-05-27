@@ -3,11 +3,7 @@ db:
   redis:
     host: ${REDIS_URL:-localhost}
     port: ${REDIS_PORT:-6379}
-    namespace: AG
-
-#plugins:
-  # express-gateway-plugin-example:
-  #   param1: 'param from system.config'
+    namespace: ${EXPRESS_GATEWAY_SCHEMA:-AG}
 
 crypto:
   cipherKey: sensitiveKey
@@ -33,3 +29,5 @@ authorizationCodes:
 plugins:
   rewrite:
     package: express-gateway-plugin-rewrite
+  jaeger-policy:
+    package: express-gateway-plugin-example

@@ -17,12 +17,21 @@ apiEndpoints:
   fetch-models:
     host: '*'
     paths: '/fetch-models'
+  update-model:
+    host: '*'
+    paths: '/update-model'
+  save-model:
+    host: '*'
+    paths: '/save-model'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
   fetch-sentences:
     host: '*'
     paths: '/fetch-sentences'
+  save-paragraph-workspace:
+    host: '*'
+    paths: '/save-paragraph-workspace'
   translation_en:
     host: '*'
     paths: '/translation_en'
@@ -32,6 +41,9 @@ apiEndpoints:
   fetch-corpus-sentences:
     host: '*'
     paths: '/fetch-corpus-sentences'
+  remove-process:
+    host: '*'
+    paths: '/remove-process'
   fetch-corpus:
     host: '*'
     paths: '/fetch-corpus'
@@ -77,30 +89,202 @@ apiEndpoints:
   get-corpus:
     host: '*'
     paths: '/get-corpus'
+  signup-user:
+    host: '*'
+    paths: '/signup-user'
   translate-source:
     host: '*'
     paths: '/translate-source'
   list-users:
     host: '*'
     paths: '/list-users'
+    scopes:
+      - 'admin'
   list-roles:
     host: '*'
     paths: '/list-roles'
   create-user:
     host: '*'
     paths: '/create-user'
+    scopes:
+      - 'admin'
   update-user-status:
     host: '*'
     paths: '/update-user-status'
-  upload-benchmark:
+    scopes:
+      - 'admin'
+  save-benchmark:
     host: '*'
-    paths: '/upload-benchmark'
+    paths: '/save-benchmark'
   update-password-admin:
     host: '*'
     paths: '/update-password-admin'
+    scopes:
+      - 'admin'
+  fetch-paragraph-workspace:
+    host: '*'
+    paths: '/fetch-paragraph-workspace'
+  start-tokenization:
+    host: '*'
+    paths: '/start-tokenization'
+  fetch-paragraph-workspace-detail:
+    host: '*'
+    paths: '/fetch-paragraph-workspace-detail'
   translate-with-hemat:
     host: '*'
     paths: '/translate-with-hemat'
+  fetch-default-config:
+    host: '*'
+    paths: '/fetch-default-config'
+  download-docx:
+    host: '*'
+    paths: '/download-docx'
+  save-composition-workspace:
+    host: '*'
+    paths: '/save-composition-workspace'
+  save-translated-docx:
+    host: '*'
+    paths: '/save-translated-docx'
+  save-mt-workspace:
+    host: '*'
+    paths: '/save-mt-workspace'
+  fetch-mt-workspace:
+    host: '*'
+    paths: '/fetch-mt-workspace'
+  fetch-mt-workspace-detail:
+    host: '*'
+    paths: '/fetch-mt-workspace-detail'
+  fetch-high-courts:
+    host: '*'
+    paths: '/fetch-high-courts'
+  update-high-court:
+    host: '*'
+    paths: '/update-high-court'
+  save-high-court:
+    host: '*'
+    paths: '/save-high-court'
+  migrate-old-data:
+    host: '*'
+    paths: '/migrate-old-data'
+  translate-anuvaad:
+    host: '*'
+    paths: '/translate-anuvaad'
+  save-search-replace-workspace:
+    host: '*'
+    paths: '/save-search-replace-workspace'
+  fetch-search-replace-workspace:
+    host: '*'
+    paths: '/fetch-search-replace-workspace'
+  fetch-search-replace-sentence:
+    host: '*'
+    paths: '/fetch-search-replace-sentence'
+  update-search-replace-sentence:
+    host: '*'
+    paths: '/update-search-replace-sentence'
+  fetch-search-replace-workspace-detail:
+    host: '*'
+    paths: '/fetch-search-replace-workspace-detail'
+  save-mt-workspace-data:
+    host: '*'
+    paths: '/save-mt-workspace-data'
+  save-paragraph-workspace-data:
+    host: '*'
+    paths: '/save-paragraph-workspace-data'
+  fetch-feedback-questions:
+    host: '*'
+    paths: '/fetch-feedback-questions'
+  save-feedback-questions:
+    host: '*'
+    paths: '/save-feedback-questions'
+  check-feedback-pending:
+    host: '*'
+    paths: '/check-feedback-pending'
+  save-captured-feedback:
+    host: '*'
+    paths: '/save-captured-feedback'
+  accept-all-search-replace-sentence:
+    host: '*'
+    paths: '/accept-all-search-replace-sentence'
+  fetch-composition-workspace:
+    host: '*'
+    paths: '/fetch-composition-workspace'
+  fetch-composition-workspace-detail:
+    host: '*'
+    paths: '/fetch-composition-workspace-detail'
+  start-pdf-parse-process:
+    host: '*'
+    paths: '/start-pdf-parse-process'
+  fetch-pdf-parse-process:
+    host: '*'
+    paths: '/fetch-pdf-parse-process'
+  fetch-pdf-sentences:
+    host: '*'
+    paths: '/fetch-pdf-sentences'
+  activate-account:
+    host: '*'
+    paths: '/activate-account'
+  extract-paragraphs:
+    host: '*'
+    paths: '/extract-paragraphs'
+  extract-paragraphs-pagewise:
+    host: '*'
+    paths: '/extract-paragraphs-pagewise'
+  tokenize-sentence:
+    host: '*'
+    paths: '/tokenize-sentence'
+  tokenize-hindi-sentence:
+    host: '*'
+    paths: '/tokenize-hindi-sentence'
+  interactive-translation:
+    host: '*'
+    paths: '/interactive-translation'
+  convert-pdf-to-doc:
+    host: '*'
+    paths: '/convert-pdf-to-doc'
+  lines:
+    host: '*'
+    paths: '/lines'
+  extract:
+    host: '*'
+    paths: '/extract'
+  ner:
+    host: '*'
+    paths: '/ner'
+  translate-pdf:
+    host: '*'
+    paths: '/translate-pdf'
+  update-pdf-sentences:
+    host: '*'
+    paths: '/update-pdf-sentences'
+  make-doc-from-sentences:
+    host: '*'
+    paths: '/make-doc-from-sentences'
+  extract-pdf-paragraphs:
+    host: '*'
+    paths: '/extract-pdf-paragraphs'
+  extract-pdf-to-sentences:
+    host: '*'
+    paths: '/extract-pdf-to-sentences'
+  merge-split-sentence:
+    host: '*'
+    paths: '/merge-split-sentence'
+  lines_v2:
+    host: '*'
+    paths: '/api/v2/ocr/lines'
+  aadhaar:
+    host: '*'
+    paths: '/aadhaar'
+  ner_v0:
+    host: '*'
+    paths: '/v0/ner'
+  feedback_report:
+    host: '*'
+    paths: '/feedback_report/_search'
+    methods: ["GET", "OPTIONS"]
+  doc_report:
+    host: '*'
+    paths: '/doc_report/_search'
+    methods: ["GET", "OPTIONS"]
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -108,8 +292,22 @@ serviceEndpoints:
     url: ${AUTO_URL:-'http://documents.anuvaad.org/auto/'}
   corpusproxy:
     url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
+  corpusproxywithoutauth:
+    url: ${NODE_URL:-'http://documents.anuvaad.org/auto/anuvaad/v1/'}
   translation:
     url: ${NMT_URL:-'http://52.40.71.62:3003/translator/'}
+  elastic:
+    url: ${ELASTIC_URL:-'http://52.88.54.220:9200/'}
+  interactive:
+    url: ${INTERACTIVE_URL:-'http://52.40.71.62:5001/'}
+  ocr_server:
+    url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
+  preprocessing_server:
+    url: ${PRE_PROCESSING_SERVER_URL:-'http://172.30.0.103:6000/'}
+  ocr_aadhar_server:
+    url: 'http://172.30.0.103:5000/api/v1/ocr/'
+  ner_server:
+    url: 'http://172.30.0.103:5001/api/'
 policies:
   - basic-auth
   - cors
@@ -120,14 +318,19 @@ policies:
   - proxy
   - rate-limit
   - headers
+  - jaeger-policy
 pipelines:
   pipeline1:
     apiEndpoints:
       - test-api
+      - download-docx
+      - tokenize-sentence
+      - tokenize-hindi-sentence
+      - ner
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - cors:
-      - basic-auth:
+      - jaeger-policy:
       - proxy:
           - action:
               serviceEndpoint: httpbin 
@@ -142,8 +345,13 @@ pipelines:
       - fetch-benchmark-analyzer-reports
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
-      - key-auth:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
       - headers:
          - action:
               headersPrefix: 'ad-'
@@ -157,6 +365,7 @@ pipelines:
   corpus:
     apiEndpoints:
       - fetch-corpus-sentences
+      - save-paragraph-workspace
       - fetch-corpus
       - translate-source
       - update-sentences
@@ -167,16 +376,55 @@ pipelines:
       - fetch-benchmark-compare-sentences
       - list-users
       - list-roles
-      - create-user
-      - update-user-status
-      - fetch-benchmark-reports
-      - fetch-benchmark-analyzer-reports
       - translate-with-hemat
       - fetch-models
+      - save-model
+      - update-model
       - fetch-languages
+      - fetch-paragraph-workspace
+      - fetch-paragraph-workspace-detail
+      - start-tokenization
+      - fetch-default-config
+      - save-mt-workspace
+      - fetch-mt-workspace
+      - fetch-mt-workspace-detail
+      - fetch-high-courts
+      - update-high-court
+      - save-high-court
+      - migrate-old-data
+      - save-search-replace-workspace
+      - fetch-search-replace-workspace
+      - fetch-search-replace-sentence
+      - update-search-replace-sentence
+      - fetch-search-replace-workspace-detail
+      - save-mt-workspace-data
+      - save-paragraph-workspace-data
+      - save-feedback-questions
+      - fetch-feedback-questions
+      - check-feedback-pending
+      - save-captured-feedback
+      - accept-all-search-replace-sentence
+      - save-composition-workspace
+      - fetch-composition-workspace
+      - fetch-composition-workspace-detail
+      - start-pdf-parse-process
+      - fetch-pdf-parse-process
+      - fetch-pdf-sentences
+      - convert-pdf-to-doc
+      - translate-pdf
+      - update-pdf-sentences
+      - make-doc-from-sentences
+      - extract-pdf-paragraphs
+      - extract-pdf-to-sentences
+      - merge-split-sentence
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -188,13 +436,34 @@ pipelines:
           - action:
               serviceEndpoint: corpusproxy 
               changeOrigin: true
+  elasticsearch:
+    apiEndpoints:
+      - doc_report
+      - feedback_report
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: elastic 
+              changeOrigin: true
   translation:
     apiEndpoints:
       - translation_en
       - translation_hi
+      - translate-anuvaad
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -205,18 +474,24 @@ pipelines:
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
+            delayMs: 0
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
           - action:
               serviceEndpoint: translation 
               changeOrigin: true
-  auto:
+  interactive:
     apiEndpoints:
-      - translate
+      - interactive-translation
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -227,6 +502,125 @@ pipelines:
       - rate-limit:
         - action:                         # allow
             max: 50                       # max 50 request
+            delayMs: 0
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${consumer.token.authenticatedUserId}"
+      - proxy:
+          - action:
+              serviceEndpoint: interactive 
+              changeOrigin: true
+  ocr:
+    apiEndpoints:
+      - lines
+      - extract
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ocr_server 
+              changeOrigin: true
+  preprocessing:
+    apiEndpoints:
+      - lines_v2
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: preprocessing_server 
+              changeOrigin: true
+  ocr_aadhar:
+    apiEndpoints:
+      - aadhaar
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ocr_aadhar_server 
+              changeOrigin: true
+  ner_server_proxy:
+    apiEndpoints:
+      - ner_v0
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ner_server 
+              changeOrigin: true
+  corpusproxywithoutauth:
+    apiEndpoints:
+      - extract-paragraphs
+      - extract-paragraphs-pagewise
+      - signup-user
+      - activate-account
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 5                       # max 5 request
+            delayMs: 0
+            windowMs: 1000              # per 1 seconds
+            rateLimitBy: "${req.ip}"
+      - proxy:
+          - action:
+              serviceEndpoint: corpusproxywithoutauth 
+              changeOrigin: true
+  auto:
+    apiEndpoints:
+      - translate
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - rate-limit:
+        - action:                         # allow
+            max: 50                       # max 50 request
+            delayMs: 0
             windowMs: 1000              # per 1 seconds
             rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
@@ -244,10 +638,17 @@ pipelines:
       - upload-corpus
       - get-corpus
       - update-password-admin
-      - upload-benchmark
+      - save-benchmark
+      - save-translated-docx
+      - remove-process
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
       - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
       - oauth2:
       - headers:
          - action:
@@ -255,8 +656,18 @@ pipelines:
               forwardHeaders:
                 userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
+      - rate-limit:
+         - action:                         # allow
+              max: 5                       # max 5 request
+              delayMs: 0
+              windowMs: 1000              # per 1 seconds
+              rateLimitBy: "${req.ip}"
       - proxy:
           - action:
               serviceEndpoint: httpbin 
               changeOrigin: true
-  
+
+
+
+              
+
