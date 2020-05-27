@@ -17,6 +17,12 @@ apiEndpoints:
   fetch-models:
     host: '*'
     paths: '/fetch-models'
+  update-model:
+    host: '*'
+    paths: '/update-model'
+  save-model:
+    host: '*'
+    paths: '/save-model'
   fetch-process:
     host: '*'
     paths: '/fetch-translation-process'
@@ -372,6 +378,8 @@ pipelines:
       - list-roles
       - translate-with-hemat
       - fetch-models
+      - save-model
+      - update-model
       - fetch-languages
       - fetch-paragraph-workspace
       - fetch-paragraph-workspace-detail
