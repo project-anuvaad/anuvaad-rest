@@ -320,7 +320,7 @@ serviceEndpoints:
   file_server:
     url: ${FILE_SERVER_URL:-'http://gateway_anuvaad-fileuploader:5008/'}
   sentence_tokenizer_server:
-    url: ${SEN_TOKENIZER_SERVER_URL:-'http://gateway_sentence-tokenisation:5101/'}
+    url: ${SEN_TOKENIZER_SERVER_URL:-'http://gateway_sentence-tokenisation:5001/'}
 policies:
   - basic-auth
   - cors
