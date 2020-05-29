@@ -283,6 +283,9 @@ apiEndpoints:
   download_file:
     host: '*'
     paths: '/anuvaad/v1/upload'
+  sent_tokenize:
+    host: '*'
+    paths: '/api/v0/para_to_sen'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -316,6 +319,8 @@ serviceEndpoints:
     url: 'http://172.30.0.103:5001/api/'
   file_server:
     url: ${FILE_SERVER_URL:-'http://gateway_anuvaad-fileuploader:5008/'}
+  sentence_tokenizer_server:
+    url: ${SEN_TOKENIZER_SERVER_URL:-'http://gateway_sentence-tokenisation:5101/'}
 policies:
   - basic-auth
   - cors
@@ -663,6 +668,26 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: file_server 
+              changeOrigin: true
+  sent_tokenizer:
+    apiEndpoints:
+      - sent_tokenize
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: sentence_tokenizer_server 
               changeOrigin: true
   default:
     apiEndpoints:
