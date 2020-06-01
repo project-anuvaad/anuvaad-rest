@@ -92,6 +92,9 @@ apiEndpoints:
   signup-user:
     host: '*'
     paths: '/signup-user'
+  forgot-user-password:
+    host: '*'
+    paths: '/forgot-user-password'
   translate-source:
     host: '*'
     paths: '/translate-source'
@@ -588,6 +591,7 @@ pipelines:
       - extract-paragraphs
       - extract-paragraphs-pagewise
       - signup-user
+      - forgot-user-password
       - activate-account
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
