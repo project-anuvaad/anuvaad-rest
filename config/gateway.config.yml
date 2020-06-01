@@ -95,6 +95,9 @@ apiEndpoints:
   forgot-user-password:
     host: '*'
     paths: '/forgot-user-password'
+  set-user-password:
+    host: '*'
+    paths: '/set-user-password'
   translate-source:
     host: '*'
     paths: '/translate-source'
@@ -592,6 +595,7 @@ pipelines:
       - extract-paragraphs-pagewise
       - signup-user
       - forgot-user-password
+      - set-user-password
       - activate-account
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
