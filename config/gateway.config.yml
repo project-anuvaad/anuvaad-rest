@@ -660,12 +660,10 @@ pipelines:
               origin: true
               methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
               maxAge: 100000000
-      - oauth2:
       - headers:
          - action:
               headersPrefix: 'ad-'
               forwardHeaders:
-                userid: 'consumer.token.authenticatedUserId'
                 requestID: 'requestID'
       - rate-limit:
         - action:                         # allow
