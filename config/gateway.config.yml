@@ -288,7 +288,7 @@ apiEndpoints:
     paths: '/anuvaad/v1/upload'
   download_file:
     host: '*'
-    paths: '/anuvaad/v1/upload'
+    paths: '/anuvaad/v1/download'
   sent_tokenize:
     host: '*'
     paths: '/api/v0/para_to_sen'
