@@ -274,6 +274,9 @@ apiEndpoints:
   merge-split-sentence:
     host: '*'
     paths: '/merge-split-sentence'
+  update-pdf-source-sentences:
+    host: '*'
+    paths: '/update-pdf-source-sentences'
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
@@ -436,6 +439,7 @@ pipelines:
       - extract-pdf-paragraphs
       - extract-pdf-to-sentences
       - merge-split-sentence
+      - update-pdf-source-sentences
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
