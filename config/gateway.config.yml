@@ -297,7 +297,7 @@ apiEndpoints:
     paths: '/anuvaad/v1/download'
   sent_tokenize:
     host: '*'
-    paths: '/api/v0/para_to_sen'
+    paths: '/api/v0/tokenisation'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
