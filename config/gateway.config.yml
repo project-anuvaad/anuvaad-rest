@@ -283,6 +283,9 @@ apiEndpoints:
   delete-sentence:
     host: '*'
     paths: '/delete-sentence'
+  delete-table-sentence:
+    host: '*'
+    paths: '/delete-table-sentence'
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
@@ -448,6 +451,7 @@ pipelines:
       - update-pdf-source-sentences
       - update-pdf-source-table
       - delete-sentence
+      - delete-table-sentence
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
