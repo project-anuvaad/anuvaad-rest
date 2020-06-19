@@ -292,6 +292,9 @@ apiEndpoints:
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
+  lines_v3:
+    host: '*'
+    paths: '/api/v3/ocr/lines'
   aadhaar:
     host: '*'
     paths: '/aadhaar'
@@ -567,6 +570,7 @@ pipelines:
   preprocessing:
     apiEndpoints:
       - lines_v2
+      - lines_v3
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
