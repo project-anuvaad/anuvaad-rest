@@ -91,10 +91,10 @@ apiEndpoints:
     paths: '/get-corpus'
   signup-user:
     host: '*'
-    paths: '/signup-user'
+    paths: '/v1/user/signup-user'
   forgot-user-password:
     host: '*'
-    paths: '/forgot-user-password'
+    paths: '/v1/user/forgot-user-password'
   set-user-password:
     host: '*'
     paths: '/set-user-password'
@@ -219,22 +219,22 @@ apiEndpoints:
     paths: '/fetch-composition-workspace-detail'
   start-pdf-parse-process:
     host: '*'
-    paths: '/start-pdf-parse-process'
+    paths: '/v1/interactive-editor/start-pdf-parse-process'
   fetch-pdf-parse-process:
     host: '*'
-    paths: '/fetch-pdf-parse-process'
+    paths: '/v1/interactive-editor/fetch-pdf-parse-process'
   fetch-pdf-sentences:
     host: '*'
-    paths: '/fetch-pdf-sentences'
+    paths: '/v1/interactive-editor/fetch-pdf-sentences'
   activate-account:
     host: '*'
-    paths: '/activate-account'
+    paths: '/v1/user/activate-account'
   extract-paragraphs:
     host: '*'
-    paths: '/extract-paragraphs'
+    paths: '/v1/interactive-editor/extract-paragraphs'
   extract-paragraphs-pagewise:
     host: '*'
-    paths: '/extract-paragraphs-pagewise'
+    paths: '/v1/interactive-editor/extract-paragraphs-pagewise'
   tokenize-sentence:
     host: '*'
     paths: '/tokenize-sentence'
@@ -258,37 +258,37 @@ apiEndpoints:
     paths: '/ner'
   translate-pdf:
     host: '*'
-    paths: '/translate-pdf'
+    paths: '/v1/interactive-editor/translate-pdf'
   update-pdf-sentences:
     host: '*'
-    paths: '/update-pdf-sentences'
+    paths: '/v1/interactive-editor/update-pdf-sentences'
   make-doc-from-sentences:
     host: '*'
-    paths: '/make-doc-from-sentences'
+    paths: '/v1/interactive-editor/make-doc-from-sentences'
   extract-pdf-paragraphs:
     host: '*'
-    paths: '/extract-pdf-paragraphs'
+    paths: '/v1/interactive-editor/extract-pdf-paragraphs'
   extract-pdf-to-sentences:
     host: '*'
-    paths: '/extract-pdf-to-sentences'
+    paths: '/v1/interactive-editor/extract-pdf-to-sentences'
   merge-split-sentence:
     host: '*'
-    paths: '/merge-split-sentence'
+    paths: '/v1/interactive-editor/merge-split-sentence'
   update-pdf-source-sentences:
     host: '*'
-    paths: '/update-pdf-source-sentences'
+    paths: '/v1/interactive-editor/update-pdf-source-sentences'
   update-pdf-source-table:
     host: '*'
-    paths: '/update-pdf-source-table'
+    paths: '/v1/interactive-editor/update-pdf-source-table'
   delete-sentence:
     host: '*'
-    paths: '/delete-sentence'
+    paths: '/v1/interactive-editor/delete-sentence'
   delete-table-sentence:
     host: '*'
-    paths: '/delete-table-sentence'
+    paths: '/v1/interactive-editor/delete-table-sentence'
   add-sentence-node:
     host: '*'
-    paths: '/add-sentence-node'
+    paths: '/v1/interactive-editor/add-sentence-node'
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
