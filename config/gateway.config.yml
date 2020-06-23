@@ -271,6 +271,9 @@ apiEndpoints:
   extract-pdf-to-sentences:
     host: '*'
     paths: '/v1/interactive-editor/extract-pdf-to-sentences'
+  extract-pdf-to-sentencesv2:
+    host: '*'
+    paths: '/v2/interactive-editor/extract-pdf-to-sentences'
   merge-split-sentence:
     host: '*'
     paths: '/v1/interactive-editor/merge-split-sentence'
@@ -453,6 +456,7 @@ pipelines:
       - make-doc-from-sentences
       - extract-pdf-paragraphs
       - extract-pdf-to-sentences
+      - extract-pdf-to-sentencesv2
       - merge-split-sentence
       - update-pdf-source-sentences
       - update-pdf-source-table
