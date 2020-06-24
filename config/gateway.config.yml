@@ -313,6 +313,9 @@ apiEndpoints:
   sent_tokenize:
     host: '*'
     paths: '/api/v0/tokenisation'
+  ner_etl:
+    host: '*'
+    paths: '/api/v0/ner_annotation'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -348,6 +351,8 @@ serviceEndpoints:
     url: ${FILE_SERVER_URL:-'http://gateway_anuvaad-fileuploader:5008/'}
   sentence_tokenizer_server:
     url: ${SEN_TOKENIZER_SERVER_URL:-'http://gateway_sentence-tokenisation:5001/'}
+  ner_etl_server:
+    url: ${NER_ETL_SERVER_URL:-'http://gateway_ner:5001/'}
 policies:
   - basic-auth
   - cors
@@ -616,6 +621,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: ner_server 
+              changeOrigin: true
+  ner_etl_server_proxy:
+    apiEndpoints:
+      - ner_etl
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ner_etl_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
