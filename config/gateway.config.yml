@@ -712,12 +712,6 @@ pipelines:
               headersPrefix: 'ad-'
               forwardHeaders:
                 requestID: 'requestID'
-      - rate-limit:
-        - action:                         # allow
-            max: 50                       # max 50 request
-            delayMs: 0
-            windowMs: 1000              # per 1 seconds
-            rateLimitBy: "${consumer.token.authenticatedUserId}"
       - proxy:
           - action:
               serviceEndpoint: file_server 
