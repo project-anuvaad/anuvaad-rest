@@ -322,6 +322,12 @@ apiEndpoints:
   aligner_get:
     host: '*'
     paths: '/anuvaad-etl/extractor/aligner/alignment/jobs/get'
+  pdf_to_html:
+    host: '*'
+    paths: '/api/v0/pdf-to-html'
+  html_to_json:
+    host: '*'
+    paths: '/api/v0/html-to-json'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -361,6 +367,10 @@ serviceEndpoints:
     url: ${NER_ETL_SERVER_URL:-'http://gateway_ner:5001/'}
   aligner_etl_server:
     url: ${ALIGNER_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-aligner:5003/'}
+  pdftohtml_etl_server:
+    url: ${PDFTOHTML_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-pdf2html:5001/'}
+  htmltojson_etl_server:
+    url: ${HTMLTOJSON_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-html2json:5001/'}
 policies:
   - basic-auth
   - cors
@@ -660,6 +670,36 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: aligner_etl_server 
+              changeOrigin: true
+  pdftohtml_etl_server_proxy:
+    apiEndpoints:
+      - pdf_to_html
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: pdftohtml_etl_server 
+              changeOrigin: true
+  htmltojson_etl_server_proxy:
+    apiEndpoints:
+      - html_to_json
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: htmltojson_etl_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
