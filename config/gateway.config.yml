@@ -292,6 +292,9 @@ apiEndpoints:
   add-sentence-node:
     host: '*'
     paths: '/v1/interactive-editor/add-sentence-node'
+  etl-merge-nodes:
+    host: '*'
+    paths: '/v1/interactive-editor/etl-merge-nodes'
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
@@ -506,6 +509,7 @@ pipelines:
       - delete-sentence
       - delete-table-sentence
       - add-sentence-node
+      - etl-merge-nodes
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
