@@ -322,6 +322,24 @@ apiEndpoints:
   aligner_get:
     host: '*'
     paths: '/anuvaad-etl/extractor/aligner/alignment/jobs/get'
+  get_job:
+    host: '*'
+    paths: '/anuvaad-etl/extractor/aligner/v1/alignment/jobs/get*'
+  wf_sen_align:
+    host: '*'
+    paths: '/anuvaad-etl/extractor/aligner/v1/sentences/wflow/align'
+  wf_sen:
+    host: '*'
+    paths: '/anuvaad-etl/extractor/aligner/v1/sentences/align'
+  wf_initiate:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/initiate'
+  wf_interrupt:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/interrupt'
+  wf_search:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/search*'
   pdf_to_html:
     host: '*'
     paths: '/api/v0/pdf-to-html'
@@ -367,6 +385,8 @@ serviceEndpoints:
     url: ${NER_ETL_SERVER_URL:-'http://gateway_ner:5001/'}
   aligner_etl_server:
     url: ${ALIGNER_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-aligner:5003/'}
+  wf_manager_server:
+    url: ${WF_MANAGER_SERVER_URL:-'http://gateway_anuvaad-etl-wf-manager:5002/'}
   pdftohtml_etl_server:
     url: ${PDFTOHTML_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-pdf2html:5001/'}
   htmltojson_etl_server:
@@ -659,6 +679,9 @@ pipelines:
     apiEndpoints:
       - aligner_align
       - aligner_get
+      - get_job
+      - wf_sen_align
+      - wf_sen
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -670,6 +693,23 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: aligner_etl_server 
+              changeOrigin: true
+  wf_manager_server_proxy:
+    apiEndpoints:
+      - wf_initiate
+      - wf_interrupt
+      - wf_search
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: wf_manager_server 
               changeOrigin: true
   pdftohtml_etl_server_proxy:
     apiEndpoints:
