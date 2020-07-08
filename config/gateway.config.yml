@@ -349,6 +349,9 @@ apiEndpoints:
   html_to_json:
     host: '*'
     paths: '/api/v0/html-to-json'
+  sentence_extract_lines:
+    host: '*'
+    paths: '/anuvaad-etl/extractor/sentence/v1/sentences/extract_lines'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -394,6 +397,8 @@ serviceEndpoints:
     url: ${PDFTOHTML_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-pdf2html:5001/'}
   htmltojson_etl_server:
     url: ${HTMLTOJSON_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-html2json:5001/'}
+  ocr_etl_server:
+    url: ${OCR_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-ocr:5003/'}
 policies:
   - basic-auth
   - cors
@@ -744,6 +749,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: htmltojson_etl_server 
+              changeOrigin: true
+  ocr_etl_server_proxy:
+    apiEndpoints:
+      - sentence_extract_lines
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: ocr_etl_server 
               changeOrigin: true
   corpusproxywithoutauth:
     apiEndpoints:
