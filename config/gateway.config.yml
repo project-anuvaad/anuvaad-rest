@@ -354,7 +354,7 @@ apiEndpoints:
     paths: '/api/v0/pdf-to-html'
   pdf_to_html_wf:
     host: '*'
-    paths: '/api/v0/pdf-to-html-wf '
+    paths: '/api/v0/pdf-to-html-wf'
   html_to_json:
     host: '*'
     paths: '/api/v0/html-to-json'
