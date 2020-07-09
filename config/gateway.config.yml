@@ -316,9 +316,15 @@ apiEndpoints:
   sent_tokenize:
     host: '*'
     paths: '/api/v0/tokenisation'
+  sent_tokenize_wf:
+    host: '*'
+    paths: '/api/v0/tokenisation-wf'
   ner_etl:
     host: '*'
-    paths: '/api/v0/ner_annotation'
+    paths: '/api/v0/ner-annotation'
+  ner_etl_wf:
+    host: '*'
+    paths: '/api/v0/ner-annotation-wf'
   aligner_align:
     host: '*'
     paths: '/anuvaad-etl/extractor/aligner/sentences/align'
@@ -346,9 +352,15 @@ apiEndpoints:
   pdf_to_html:
     host: '*'
     paths: '/api/v0/pdf-to-html'
+  pdf_to_html_wf:
+    host: '*'
+    paths: '/api/v0/pdf-to-html-wf '
   html_to_json:
     host: '*'
     paths: '/api/v0/html-to-json'
+  html_to_json_wf:
+    host: '*'
+    paths: '/api/v0/html-to-json-wf'
   sentence_extract_lines:
     host: '*'
     paths: '/anuvaad-etl/extractor/sentence/v1/sentences/extract_lines'
@@ -672,6 +684,7 @@ pipelines:
   ner_etl_server_proxy:
     apiEndpoints:
       - ner_etl
+      - ner_etl_wf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -723,6 +736,7 @@ pipelines:
   pdftohtml_etl_server_proxy:
     apiEndpoints:
       - pdf_to_html
+      - pdf_to_html_wf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -738,6 +752,7 @@ pipelines:
   htmltojson_etl_server_proxy:
     apiEndpoints:
       - html_to_json
+      - html_to_json_wf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
@@ -875,6 +890,7 @@ pipelines:
   sent_tokenizer:
     apiEndpoints:
       - sent_tokenize
+      - sent_tokenize_wf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
