@@ -295,6 +295,9 @@ apiEndpoints:
   etl-merge-nodes:
     host: '*'
     paths: '/v1/interactive-editor/etl-merge-nodes'
+  translate_pdf_v2:
+    host: '*'
+    paths: '/v2/interactive-editor/translate-pdf'
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
@@ -527,6 +530,7 @@ pipelines:
       - delete-table-sentence
       - add-sentence-node
       - etl-merge-nodes
+      - translate_pdf_v2
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
