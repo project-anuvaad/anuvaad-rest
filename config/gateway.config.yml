@@ -415,7 +415,7 @@ serviceEndpoints:
   ocr_etl_server:
     url: ${OCR_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-ocr:5003/'}
   ocr_etl_server_v2:
-    url: ${OCR_ETL_SERVER_URL_V2:-http://172.30.0.155:6000'}
+    url: ${OCR_ETL_SERVER_URL_V2:-'http://172.30.0.155:6000/'}
 policies:
   - basic-auth
   - cors
