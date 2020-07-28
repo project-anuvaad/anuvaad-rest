@@ -238,6 +238,9 @@ apiEndpoints:
   tokenize-sentence:
     host: '*'
     paths: '/tokenize-sentence'
+  v2_tokenize-sentence:
+    host: '*'
+    paths: '/v2/tokenize-sentence'
   tokenize-hindi-sentence:
     host: '*'
     paths: '/tokenize-hindi-sentence'
@@ -433,6 +436,7 @@ pipelines:
       - test-api
       - download-docx
       - tokenize-sentence
+      - v2_tokenize-sentence
       - tokenize-hindi-sentence
       - ner
     policies:
