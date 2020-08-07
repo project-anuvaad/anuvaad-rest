@@ -307,6 +307,9 @@ apiEndpoints:
   lines_v2:
     host: '*'
     paths: '/api/v2/ocr/lines'
+  digital_pdf:
+    host: '*'
+    paths: '/v1/digital_pdf'
   aadhaar:
     host: '*'
     paths: '/aadhaar'
@@ -400,6 +403,8 @@ serviceEndpoints:
     url: ${OCR_SERVER_URL:-'http://172.30.0.103:6000/api/v1/ocr/'}
   preprocessing_server:
     url: ${PRE_PROCESSING_SERVER_URL:-'http://172.30.0.103:6000/'}
+  doc_structure_server:
+    url: ${DOC_STRUCTURE_SERVER_URL:-'http://172.30.0.103:7000/'}
   ocr_aadhar_server:
     url: 'http://172.30.0.103:5000/api/v1/ocr/'
   ner_server:
@@ -662,6 +667,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: preprocessing_server 
+              changeOrigin: true
+  doc_structure:
+    apiEndpoints:
+      - digital_pdf
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: doc_structure_server 
               changeOrigin: true
   ocr_aadhar:
     apiEndpoints:
