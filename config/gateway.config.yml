@@ -238,6 +238,9 @@ apiEndpoints:
   tokenize-sentence:
     host: '*'
     paths: '/tokenize-sentence'
+  convert-to-pdf:
+    host: '*'
+    paths: '/convert-to-pdf'
   v2_tokenize-sentence:
     host: '*'
     paths: '/v2/tokenize-sentence'
@@ -939,6 +942,7 @@ pipelines:
       - fetch-process
       - fetch-sentences
       - get-profile
+      - convert-to-pdf
       - update-password
       - upload-corpus
       - get-corpus
