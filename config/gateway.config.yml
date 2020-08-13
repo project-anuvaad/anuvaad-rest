@@ -259,6 +259,9 @@ apiEndpoints:
   extract:
     host: '*'
     paths: '/extract'
+  pdf-extractor:
+    host: '*'
+    paths: '/pdf-extractor'
   ner:
     host: '*'
     paths: '/ner'
@@ -427,6 +430,8 @@ serviceEndpoints:
     url: ${OCR_ETL_SERVER_URL:-'http://gateway_anuvaad-etl-ocr:5003/'}
   ocr_etl_server_v2:
     url: ${OCR_ETL_SERVER_URL_V2:-'http://172.30.0.155:6000/'}
+  block_merger_server:
+    url: ${BLOCK_MERGER_SERVER_URL:-'http://gateway_anuvaad-block-merger:5001/'}
 policies:
   - basic-auth
   - cors
@@ -796,6 +801,28 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: htmltojson_etl_server 
+              changeOrigin: true
+  block_merger_server_proxy:
+    apiEndpoints:
+      - pdf-extractor
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: block_merger_server 
               changeOrigin: true
   ocr_etl_server_proxy:
     apiEndpoints:
