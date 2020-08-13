@@ -261,7 +261,7 @@ apiEndpoints:
     paths: '/extract'
   pdf-extractor:
     host: '*'
-    paths: '/pdf-extractor'
+    paths: '/api/v0/pdf-extractor'
   ner:
     host: '*'
     paths: '/ner'
