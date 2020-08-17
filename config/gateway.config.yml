@@ -379,6 +379,9 @@ apiEndpoints:
   sentence_extract_lines_v2:
     host: '*'
     paths: '/api/v3/ocr/lines'
+  convert-pdf:
+    host: '*'
+    paths: '/api/v0/convert-pdf'
   feedback_report:
     host: '*'
     paths: '/feedback_report/_search'
@@ -432,6 +435,8 @@ serviceEndpoints:
     url: ${OCR_ETL_SERVER_URL_V2:-'http://172.30.0.155:6000/'}
   block_merger_server:
     url: ${BLOCK_MERGER_SERVER_URL:-'http://gateway_anuvaad-block-merger:5001/'}
+  file_converter_server:
+    url: ${FILE_CONVERTER_SERVER_URL:-'http://gateway_anuvaad-file-converter:5001/'}
 policies:
   - basic-auth
   - cors
@@ -823,6 +828,28 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: block_merger_server 
+              changeOrigin: true
+  file_converter_server_proxy:
+    apiEndpoints:
+      - convert-pdf
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+         - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: file_converter_server 
               changeOrigin: true
   ocr_etl_server_proxy:
     apiEndpoints:
