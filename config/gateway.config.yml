@@ -262,6 +262,9 @@ apiEndpoints:
   pdf-extractor:
     host: '*'
     paths: '/api/v0/pdf-extractor'
+  merge-blocks-wf:
+    host: '*'
+    paths: '/api/v0/merge-blocks-wf'
   ner:
     host: '*'
     paths: '/ner'
@@ -825,6 +828,7 @@ pipelines:
   block_merger_server_proxy:
     apiEndpoints:
       - pdf-extractor
+      - merge-blocks-wf
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
