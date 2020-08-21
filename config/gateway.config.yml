@@ -361,6 +361,9 @@ apiEndpoints:
   wf_interrupt:
     host: '*'
     paths: '/anuvaad-etl/wf-manager/v1/workflow/interrupt'
+  wf_search_bulk:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/search/bulk'
   wf_search:
     host: '*'
     paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/search*'
@@ -774,6 +777,7 @@ pipelines:
       - wf_initiate
       - wf_interrupt
       - wf_search
+      - wf_search_bulk
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
