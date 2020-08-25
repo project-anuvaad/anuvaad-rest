@@ -394,6 +394,9 @@ apiEndpoints:
   upload-file:
     host: '*'
     paths: '/api/v0/upload-file'
+  serve-file:
+    host: '*'
+    paths: '/api/v0/serve-file'
   download-file:
     host: '*'
     paths: '/api/v0/download-file'
@@ -881,6 +884,7 @@ pipelines:
   user_file_uploader_server_secure_proxy:
     apiEndpoints:
       - upload-file
+      - serve-file
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
