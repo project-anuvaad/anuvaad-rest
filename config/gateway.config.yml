@@ -250,6 +250,9 @@ apiEndpoints:
   interactive-translation:
     host: '*'
     paths: '/interactive-translation'
+  interactive-translation_v1:
+    host: '*'
+    paths: '/v1/interactive-translation'
   convert-pdf-to-doc:
     host: '*'
     paths: '/convert-pdf-to-doc'
@@ -642,6 +645,7 @@ pipelines:
   interactive:
     apiEndpoints:
       - interactive-translation
+      - interactive-translation_v1
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
