@@ -397,9 +397,12 @@ apiEndpoints:
   upload-file:
     host: '*'
     paths: '/api/v0/upload-file'
-  content:
+  save-content:
     host: '*'
-    paths: '/api/v0/content'
+    paths: '/api/v0/save-content'
+  fetch-content:
+    host: '*'
+    paths: '/api/v0/fetch-content'
   serve-file:
     host: '*'
     paths: '/api/v0/serve-file'
@@ -915,7 +918,8 @@ pipelines:
               changeOrigin: true
   content_handler_server_proxy:
     apiEndpoints:
-      - content
+      - save-content
+      - fetch-content
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
