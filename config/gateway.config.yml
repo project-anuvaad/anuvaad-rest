@@ -403,6 +403,9 @@ apiEndpoints:
   fetch-content:
     host: '*'
     paths: '/api/v0/fetch-content'
+  update-content:
+    host: '*'
+    paths: '/api/v0/update-content'
   serve-file:
     host: '*'
     paths: '/api/v0/serve-file'
@@ -920,6 +923,7 @@ pipelines:
     apiEndpoints:
       - save-content
       - fetch-content
+      - update-content
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
