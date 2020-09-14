@@ -397,6 +397,9 @@ apiEndpoints:
   upload-file:
     host: '*'
     paths: '/api/v0/upload-file'
+  wf_translate:
+    host: '*'
+    paths: '/anuvaad-etl/translator/v1/doc/workflow/translate'
   save-content:
     host: '*'
     paths: '/api/v0/save-content'
@@ -471,6 +474,8 @@ serviceEndpoints:
     url: ${USER_FILE_UPLOADER_SERVER_URL:-'http://gateway_anuvaad-user-fileuploader:5001/'}
   content_handler_server:
     url: ${CONTENT_HANDLER_SERVER_URL:-'http://gateway_anuvaad-content-handler:5001/'}
+  translator_server:
+    url: ${TRANSLATOR_SERVER_URL:-'http://gateway_anuvaad-etl-translator:5004/'}
 policies:
   - basic-auth
   - cors
@@ -918,6 +923,21 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: user_file_uploader_server 
+              changeOrigin: true
+  translator_server_proxy:
+    apiEndpoints:
+      - wf_translate
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+         - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - proxy:
+          - action:
+              serviceEndpoint: translator_server 
               changeOrigin: true
   content_handler_server_proxy:
     apiEndpoints:
