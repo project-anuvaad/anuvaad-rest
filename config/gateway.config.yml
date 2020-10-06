@@ -982,28 +982,28 @@ pipelines:
               serviceEndpoint: content_handler_server 
               changeOrigin: true
 ####
-    document_converter_server_proxy:
-      apiEndpoints:
-        - document-converter
-      policies:
-      # Uncomment `key-auth:` when instructed to in the Getting Started guide.
-        - jaeger-policy:
-        - cors:
+  document_converter_server_proxy:
+    apiEndpoints:
+      - document-converter
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+        - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+        - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
           - action:
-                origin: true
-                methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
-                maxAge: 100000000
-        - oauth2:
-        - headers:
-          - action:
-                headersPrefix: 'ad-'
-                forwardHeaders:
-                  userid: 'consumer.token.authenticatedUserId'
-                  requestID: 'requestID'
-        - proxy:
-            - action:
-                serviceEndpoint: document_converter_handler_server 
-                changeOrigin: true
+              serviceEndpoint: document_converter_handler_server 
+              changeOrigin: true
 #####
   telemetry_server_proxy:
     apiEndpoints:
