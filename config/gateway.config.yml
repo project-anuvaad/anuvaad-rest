@@ -415,6 +415,9 @@ apiEndpoints:
   sentence:
     host: '*'
     paths: '/api/v0/sentence'
+  document-converter:
+    host: '*'
+    paths: '/api/v0/document-converter'
   serve-file:
     host: '*'
     paths: '/api/v0/serve-file'
@@ -483,6 +486,8 @@ serviceEndpoints:
     url: ${USER_FILE_UPLOADER_SERVER_URL:-'http://gateway_anuvaad-user-fileuploader:5001/'}
   content_handler_server:
     url: ${CONTENT_HANDLER_SERVER_URL:-'http://gateway_anuvaad-content-handler:5001/'}
+  document_converter_handler_server:
+    url: ${DOCUMENT_CONVERTER_HANDLER_SERVER_URL:-'http://gateway_anuvaad-document-converter-handler:5001/'}
   translator_server:
     url: ${TRANSLATOR_SERVER_URL:-'http://gateway_anuvaad-etl-translator:5004/'}
   telemetry_server:
@@ -977,6 +982,30 @@ pipelines:
               serviceEndpoint: content_handler_server 
               changeOrigin: true
 
+##
+  document_converter_handler_server_proxy:
+    apiEndpoints:
+      - document-converter
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+        - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+        - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: document_converter_handler_server 
+              changeOrigin: true
+##
   telemetry_server_proxy:
     apiEndpoints:
       - telemetry
