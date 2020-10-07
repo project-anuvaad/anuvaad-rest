@@ -981,8 +981,6 @@ pipelines:
           - action:
               serviceEndpoint: content_handler_server 
               changeOrigin: true
-
-##
   document_converter_handler_server_proxy:
     apiEndpoints:
       - document-converter
@@ -1005,7 +1003,6 @@ pipelines:
           - action:
               serviceEndpoint: document_converter_handler_server 
               changeOrigin: true
-##
   telemetry_server_proxy:
     apiEndpoints:
       - telemetry
