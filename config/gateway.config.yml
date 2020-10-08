@@ -494,7 +494,7 @@ serviceEndpoints:
   telemetry_server:
     url: ${TELEMETRY_SERVER_URL:-'http://gateway_telemetry-service:9001/'}
   document_converter_server:
-    url: ${DOCUMENT_CONVERTER_SERVER_URL:-'http://gateway_anuvaad-document-converter:5001/'}
+    url: ${DOCUMENT_CONVERTER_SERVER_URL:-'http://gateway_anuvaad-etl-document-converter:5001/'}
 policies:
   - basic-auth
   - cors
