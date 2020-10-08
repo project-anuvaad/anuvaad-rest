@@ -435,6 +435,9 @@ apiEndpoints:
     host: '*'
     paths: '/doc_report/_search'
     methods: ["GET", "OPTIONS"]
+  document-converter:
+    host: '*'
+    paths: '/api/v0/document-converter'
 serviceEndpoints:
   httpbin:
     url: ${PYTHON_URL:-'http://gateway_python:5001/'}
@@ -490,6 +493,8 @@ serviceEndpoints:
     url: ${TRANSLATOR_SERVER_URL:-'http://gateway_anuvaad-etl-translator:5004/'}
   telemetry_server:
     url: ${TELEMETRY_SERVER_URL:-'http://gateway_telemetry-service:9001/'}
+  document_converter_server:
+    url: ${CONTENT_HANDLER_SERVER_URL:-'http://gateway_anuvaad-document-converter:5001/'}
 policies:
   - basic-auth
   - cors
@@ -1151,6 +1156,28 @@ pipelines:
       - proxy:
           - action:
               serviceEndpoint: file_server 
+              changeOrigin: true
+  document_converter_server_proxy:
+    apiEndpoints:
+      - document-converter
+    policies:
+    # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      - jaeger-policy:
+      - cors:
+          - action:
+              origin: true
+              methods: 'GET,PUT,PATCH,POST,DELETE,HEAD'
+              maxAge: 100000000
+      - oauth2:
+      - headers:
+          - action:
+              headersPrefix: 'ad-'
+              forwardHeaders:
+                userid: 'consumer.token.authenticatedUserId'
+                requestID: 'requestID'
+      - proxy:
+          - action:
+              serviceEndpoint: document_converter_server 
               changeOrigin: true
   sent_tokenizer:
     apiEndpoints:
