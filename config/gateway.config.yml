@@ -418,6 +418,12 @@ apiEndpoints:
   save-content-sentence:
     host: '*'
     paths: '/api/v0/save-content-sentence'
+  dictionary-update:
+    host: '*'
+    paths: '/api/v0/dictionary/update'
+  dictionary-search:
+    host: '*'
+    paths: '/api/v0/dictionary/search'
   serve-file:
     host: '*'
     paths: '/api/v0/serve-file'
@@ -966,6 +972,8 @@ pipelines:
       - update-content
       - fetch-content-sentence
       - save-content-sentence
+      - dictionary-update
+      - dictionary-search
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
