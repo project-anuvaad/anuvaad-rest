@@ -430,6 +430,9 @@ apiEndpoints:
   dictionary-search:
     host: '*'
     paths: '/api/v0/dictionary/search'
+  records-search:
+    host: '*'
+    paths: '/api/v0/records/search'
   serve-file:
     host: '*'
     paths: '/api/v0/serve-file'
@@ -989,6 +992,7 @@ pipelines:
       - save-content-sentence
       - dictionary-update
       - dictionary-search
+      - records-search
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
