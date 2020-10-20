@@ -373,6 +373,9 @@ apiEndpoints:
   wf_search:
     host: '*'
     paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/search*'
+  wf_mark_delete:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/mark-inactive'
   pdf_to_html:
     host: '*'
     paths: '/api/v0/pdf-to-html'
@@ -830,6 +833,7 @@ pipelines:
       - wf_search
       - wf_search_bulk
       - wf_search_config
+      - wf_mark_delete
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
