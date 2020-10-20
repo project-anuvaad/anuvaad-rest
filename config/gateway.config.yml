@@ -406,6 +406,9 @@ apiEndpoints:
   wf_text_translate:
     host: '*'
     paths: '/anuvaad-etl/translator/v1/text/translate'
+  wf_block_translate:
+    host: '*'
+    paths: '/anuvaad-etl/translator/v1/block/workflow/translate'
   save-content:
     host: '*'
     paths: '/api/v0/save-content'
@@ -957,6 +960,7 @@ pipelines:
     apiEndpoints:
       - wf_translate
       - wf_text_translate
+      - wf_block_translate
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
