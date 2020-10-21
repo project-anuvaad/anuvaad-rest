@@ -376,6 +376,12 @@ apiEndpoints:
   wf_mark_delete:
     host: '*'
     paths: '/anuvaad-etl/wf-manager/v1/workflow/jobs/mark-inactive'
+  wf_sync_initiate:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/sync/initiate'
+  wf_async_initiate:
+    host: '*'
+    paths: '/anuvaad-etl/wf-manager/v1/workflow/async/initiate'
   pdf_to_html:
     host: '*'
     paths: '/api/v0/pdf-to-html'
@@ -840,6 +846,8 @@ pipelines:
       - wf_search_bulk
       - wf_search_config
       - wf_mark_delete
+      - wf_sync_initiate
+      - wf_async_initiate
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
       - jaeger-policy:
